@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Redirect, Switch } from "react-router-dom";
+// import 'antd/dist/antd.css';
+
+import { Auth, Home } from "./pages";
 
 function App() {
+  const isAuth = true;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Start
-        </a>
-      </header>
+    <div className="wrapper ">
+      <Switch>
+        <Redirect
+          from="/oauth2/authorization/google"
+          to="/oauth2/authorization/google"
+        />
+        <Route
+          exact
+          path={["/signin", "/signup", "/signup/verify"]}
+          component={Auth}
+        />
+        <Route
+          path="/"
+          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
+        // render={() => <Home />}
+        />
+      </Switch>
     </div>
   );
 }

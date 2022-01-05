@@ -1,0 +1,73 @@
+.auth {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+
+  &__wrapper_button {
+    display: flex;
+    flex-direction: row;
+
+    .Google {
+      color: rgb(0, 0, 0);
+      margin-left: 5px;
+      font-size: 2.4em;
+    }
+
+    .button {
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.1px;
+      flex-grow: 2;
+
+      color: #ffffff;
+    }
+  }
+  &__top {
+    text-align: center;
+    margin-bottom: 3.2rem;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 0.2rem;
+      text-align: center;
+      letter-spacing: 0.12px;
+      opacity: 0.5;
+    }
+  }
+  .block {
+    width: 314px;
+  }
+
+  &__register-link {
+    text-align: center;
+    display: block;
+
+    line-height: 19px;
+
+    letter-spacing: 0.114286px;
+
+    color: #adadad;
+  }
+  &__success-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 400px;
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+    h2 {
+      margin-top: 10px;
+    }
+    p {
+      color: #adadad;
+    }
+  }
+}
