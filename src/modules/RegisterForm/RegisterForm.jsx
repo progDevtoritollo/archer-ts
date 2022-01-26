@@ -13,6 +13,7 @@ import {
 import { Block } from "./../../components";
 import registerService from "./../../services/registerService";
 
+const GOOGLE_API = "http://localhost:3000/oauth2/authorization/google";
 async function register(registerData, setSuccess) {
   console.log("Received values of form: ", registerData);
   let res = await registerService.Register(registerData);
@@ -148,7 +149,7 @@ const RegisterForm = (registerData) => {
                 >
                   ЗАРЕГИСТРИРОВАТЬСЯ
                 </Button>
-                <Link to="/oauth2/authorization/google">
+                <Link to={GOOGLE_API}>
                   <GoogleSquareFilled className="Google" />
                 </Link>
               </div>

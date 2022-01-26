@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 
 import Bullet from "../../assets/img/bullet.png";
-import { Button } from "antd";
-// import BigTarget from "../../containers/BigTarget";
-import TripleTarget from "../../containers/TripleTarget";
+// import { Button } from "antd";
+import BigTarget from "../../containers/BigTarget";
 import "./TrainingEvent.scss";
+import KRService from "./../../services/KRService";
 
 const width = 15;
 
@@ -16,7 +16,7 @@ const columns = [
     width: 10,
   },
   {
-    title: "Выстрелы",
+    // title: "Выстрелы",
     children: [
       {
         title: "1",
@@ -52,18 +52,23 @@ const TrainingEvent = () => {
     thirdShot: null,
   });
 
+  async function postKR(KRData) {
+    console.log("Received values of KR: ", KRData);
+    let res = await KRService.Post(KRData);
+    console.log(res);
+  }
+
   const handleClick = (e) => {
     if (currentSeries.number >= 10 && currentSeries.thirdShot !== null) {
       return;
     }
     const item = {
-      x: e.clientX - 55,
-      y: e.clientY - 55,
+      x: e.clientX - 13,
+      y: e.clientY - 13,
       id: e.target.getAttribute("id"),
     };
 
     setBullet([...bullet, item]);
-    console.log(bullet);
     if (currentSeries.firstShot === null) {
       setCurrentSeries({
         ...currentSeries,
@@ -93,38 +98,22 @@ const TrainingEvent = () => {
 
   const getTable = () => [...series, currentSeries];
 
+  useEffect(() => {
+    if (bullet.length >= 30) {
+      postKR(bullet);
+    }
+  }, [bullet]);
+
   return (
     <div className="trainningEvent-wrapper" style={{ position: "absolute" }}>
-      <div className="trainningEvent__target">
-        {/* <h1>Внесение попаданий </h1> */}
-        <div className="trainningEvent__target-upper">
-          <TripleTarget handleClick={handleClick} />
-          {bullet.map((value) => {
-            return (
-              <img
-                style={{ position: "absolute", left: value.x, top: value.y }}
-                src={Bullet}
-                width={15}
-                alt="bullet"
-              />
-            );
-          })}
-          <TripleTarget handleClick={handleClick} />
-          {bullet.map((value) => {
-            return (
-              <img
-                style={{ position: "absolute", left: value.x, top: value.y }}
-                src={Bullet}
-                width={15}
-                alt="bullet"
-              />
-            );
-          })}
-        </div>
-        <TripleTarget handleClick={handleClick} className="low-target" />
+      <div className="trainningEvent__target-block">
+        <h1>Контрольная </h1>
+
+        <BigTarget handleClick={handleClick} className="target" />
         {bullet.map((value) => {
           return (
             <img
+              key={value.y + value.x}
               style={{ position: "absolute", left: value.x, top: value.y }}
               src={Bullet}
               width={15}

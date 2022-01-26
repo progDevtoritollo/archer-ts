@@ -21,7 +21,6 @@ function App() {
         <Route
           path="/"
           render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
-        // render={() => <Home />}
         />
       </Switch>
     </div>

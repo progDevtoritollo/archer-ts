@@ -9,6 +9,8 @@ import loginService from "./../../services/loginService";
 
 import { Block } from "./../../components";
 
+const GOOGLE_API = "http://localhost:3000/oauth2/authorization/google";
+
 async function login(loginData) {
   console.log("Received values of form: ", loginData);
   let res = await loginService.Login(loginData);
@@ -81,7 +83,7 @@ const LoginForm = (loginData) => {
               >
                 ВОЙТИ В АККАУНТ
               </Button>
-              <Link to="/oauth2/authorization/google">
+              <Link to={GOOGLE_API}>
                 <GoogleSquareFilled className="Google" />
               </Link>
             </div>
