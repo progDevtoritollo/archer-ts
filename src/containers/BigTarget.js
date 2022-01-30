@@ -113,7 +113,8 @@ function BigTarget(props) {
         <path
           onClick={handleClick}
           d="M105 100a5 5 0 11-.001 10.001A5 5 0 01105 100z"
-          id="X"
+          // id="X"
+          id="10"
           fill="#ff0"
           stroke="#000"
           strokeWidth={0.353}
