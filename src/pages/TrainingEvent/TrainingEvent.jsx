@@ -144,9 +144,10 @@ const TrainingEvent = () => {
   });
 
   return (
-    <div className="trainningEvent-wrapper" style={{ position: "absolute" }}>
+    <div className="trainningEvent-wrapper">
+      {/* <div className="trainningEvent-wrapper" style={{ position: "absolute" }}> */}
       <div className="trainningEvent__target-block">
-        <h1>Контрольная </h1>
+        <h1>Check </h1>
 
         <BigTarget handleClick={handleClick} className="target" />
         {bullet.map((value) => {
