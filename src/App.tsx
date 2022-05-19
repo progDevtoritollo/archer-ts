@@ -2,16 +2,17 @@ import { Route, Redirect, Switch } from "react-router-dom";
 // import 'antd/dist/antd.css';
 
 import { Auth, Home } from "./pages";
+import { GOOGLE_API } from "./commons";
 
 function App() {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <div className="wrapper ">
       <Switch>
         <Redirect
-          from="/oauth2/authorization/google"
-          to="/oauth2/authorization/google"
+          from={GOOGLE_API}
+          to={GOOGLE_API}
         />
         <Route
           exact

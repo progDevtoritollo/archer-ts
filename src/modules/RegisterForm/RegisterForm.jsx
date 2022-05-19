@@ -1,6 +1,7 @@
 import { Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   UserOutlined,
@@ -13,6 +14,7 @@ import {
 import { GOOGLE_API } from "./../../commons";
 import { Block } from "./../../components";
 import registerService from "./../../services/registerService";
+import { setEmail, setName, setSurname } from "./../../redux/actions/user";
 
 async function register(registerData, setSuccess) {
   console.log("Received values of form: ", registerData);
@@ -24,13 +26,32 @@ async function register(registerData, setSuccess) {
 }
 
 const RegisterForm = (registerData) => {
+  const dispatch = useDispatch();
+  const { email, name, surname } = useSelector(({ user }) => user);
+  console.log(email);
   const [success, setSuccess] = useState(true);
+  // const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [surname, setSurname] = useState("");
+
   const onFinish = (registerData) => {
     register(registerData, setSuccess);
   };
 
   const handleGoogleClick = () => {
     window.location.replace(GOOGLE_API);
+  };
+
+  const handleSetEmail = (e) => {
+    dispatch(setEmail(e.target.value));
+  };
+
+  const handleSetName = (e) => {
+    dispatch(setName(e.target.value));
+  };
+
+  const handleSetSurname = (e) => {
+    dispatch(setSurname(e.target.value));
   };
 
   return (
@@ -58,6 +79,8 @@ const RegisterForm = (registerData) => {
               ]}
             >
               <Input
+                value={email}
+                onChange={handleSetEmail}
                 prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="E-mail"
               />
@@ -75,6 +98,8 @@ const RegisterForm = (registerData) => {
               ]}
             >
               <Input
+                value={name}
+                onChange={handleSetName}
                 prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="Имя"
               />
@@ -92,6 +117,8 @@ const RegisterForm = (registerData) => {
               ]}
             >
               <Input
+                value={surname}
+                onChange={handleSetSurname}
                 prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="Фамилия"
               />

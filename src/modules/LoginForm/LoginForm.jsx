@@ -5,8 +5,9 @@ import {
   GoogleSquareFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import loginService from "./../../services/loginService";
+import React, { useState } from "react";
 
+import loginService from "./../../services/loginService";
 import { Block } from "./../../components";
 import { GOOGLE_API } from "./../../commons";
 
@@ -17,10 +18,15 @@ async function login(loginData) {
 }
 
 const LoginForm = (loginData) => {
+  const [email, setEmail] = useState("");
+
   const onFinish = (loginData) => {
     login(loginData);
   };
 
+  const handleSetEmail = (e) => {
+    setEmail(e.target.value);
+  };
   const handleGoogleClick = () => {
     window.location.replace(GOOGLE_API);
   };
@@ -56,6 +62,8 @@ const LoginForm = (loginData) => {
             ]}
           >
             <Input
+              value={email}
+              onChange={handleSetEmail}
               prefix={<MailOutlined className="site-form-item-icon" />}
               placeholder="E-mail"
             />
