@@ -10,10 +10,10 @@ import {
   GoogleSquareFilled,
 } from "@ant-design/icons";
 
+import { GOOGLE_API } from "./../../commons";
 import { Block } from "./../../components";
 import registerService from "./../../services/registerService";
 
-const GOOGLE_API = "http://localhost:3000/oauth2/authorization/google";
 async function register(registerData, setSuccess) {
   console.log("Received values of form: ", registerData);
   let res = await registerService.Register(registerData);
@@ -27,6 +27,10 @@ const RegisterForm = (registerData) => {
   const [success, setSuccess] = useState(true);
   const onFinish = (registerData) => {
     register(registerData, setSuccess);
+  };
+
+  const handleGoogleClick = () => {
+    window.location.replace(GOOGLE_API);
   };
 
   return (
@@ -149,9 +153,9 @@ const RegisterForm = (registerData) => {
                 >
                   ЗАРЕГИСТРИРОВАТЬСЯ
                 </Button>
-                <Link to={GOOGLE_API}>
+                <div onClick={handleGoogleClick}>
                   <GoogleSquareFilled className="Google" />
-                </Link>
+                </div>
               </div>
             </Form.Item>
             <Form.Item>

@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 import loginService from "./../../services/loginService";
 
 import { Block } from "./../../components";
-
-const GOOGLE_API = "http://localhost:3000/oauth2/authorization/google";
+import { GOOGLE_API } from "./../../commons";
 
 async function login(loginData) {
   console.log("Received values of form: ", loginData);
@@ -20,6 +19,10 @@ async function login(loginData) {
 const LoginForm = (loginData) => {
   const onFinish = (loginData) => {
     login(loginData);
+  };
+
+  const handleGoogleClick = () => {
+    window.location.replace(GOOGLE_API);
   };
 
   return (
@@ -83,14 +86,17 @@ const LoginForm = (loginData) => {
               >
                 ВОЙТИ В АККАУНТ
               </Button>
-              <Link to={GOOGLE_API}>
+              <div onClick={handleGoogleClick}>
                 <GoogleSquareFilled className="Google" />
-              </Link>
+              </div>
+              {/* <Link to={GOOGLE_API}>
+                <GoogleSquareFilled className="Google" />
+              </Link> */}
             </div>
           </Form.Item>
           <Form.Item>
             <Link className="auth__register-link" to="/signup">
-              Зарегестрироваться
+              Зарегистрироваться
             </Link>
           </Form.Item>
         </Form>
