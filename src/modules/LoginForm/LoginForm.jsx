@@ -17,7 +17,7 @@ async function login(loginData) {
   console.log(res);
 }
 
-const LoginForm = (loginData) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
 
   const onFinish = (loginData) => {
@@ -97,9 +97,6 @@ const LoginForm = (loginData) => {
               <div onClick={handleGoogleClick}>
                 <GoogleSquareFilled className="Google" />
               </div>
-              {/* <Link to={GOOGLE_API}>
-                <GoogleSquareFilled className="Google" />
-              </Link> */}
             </div>
           </Form.Item>
           <Form.Item>
