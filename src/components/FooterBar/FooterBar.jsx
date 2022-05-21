@@ -3,6 +3,8 @@ import { TabBar, Popup } from "antd-mobile";
 import { Avatar, Badge } from "antd";
 import { UserOutline } from "antd-mobile-icons";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setAuth } from "./../../redux/actions/user";
 
 import {
   TeamOutlined,
@@ -18,6 +20,7 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import "./FooterBar.scss";
 
 const FooterBar: React.FC = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const { pathname } = location;
@@ -83,21 +86,26 @@ const FooterBar: React.FC = () => {
           />
           <TabBar.Item
             className="footer-item"
-            key={"/profile/"}
+            key={"/profile/notification"}
             icon={<BellOutlined />}
             title={"Notification"}
             badge={11}
           />
           <TabBar.Item
             className="footer-item"
-            key={"/profile/"}
+            key={"/profile/statistic"}
             icon={<FireOutlined />}
             title={"Statistic"}
             badge={0}
           />
           <TabBar.Item
+            onClick={() => {
+              dispatch(setAuth(false));
+              history.push("/");
+              // DELITE TOKEN FROM LOCKAL STORE
+            }}
             className="footer-item"
-            key={"profile/Log out "}
+            key={"/Logout "} //&&&?????????????????
             icon={<LoginOutlined />}
             title={"Log out"}
             badge={0}
