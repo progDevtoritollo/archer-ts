@@ -2,7 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import { FooterBar } from "../../components";
-
+import ProfileNotification from "./../ProfileNotification/ProfileNotification";
+import ProfileSettings from "./../ProfileSettings/ProfileSettings";
 import TrainingEvent from "./../TrainingEvent/TrainingEvent";
 import "./Home.scss";
 
@@ -10,10 +11,15 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        {/* <h1>Home</h1> */}
+        <Route
+          exact
+          path="/profile/notification"
+          component={ProfileNotification}
+        />
+        <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route path="/target" component={TrainingEvent} />
-        <FooterBar />
       </div>
+      <FooterBar />
       {/* <div>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
