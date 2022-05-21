@@ -2,7 +2,9 @@ const initialState = {
   email: "",
   name: "",
   surname: "",
-  isAuth: false,
+  birthday: "2000-01-01",
+  // avatar: "",
+  isAuth: true,
 };
 
 const user = (state = initialState, action) => {
@@ -28,6 +30,16 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isAuth: action.payload,
+      };
+    case "SET_BIRTHDAY":
+      return {
+        ...state,
+        birthday: action.payload,
+      };
+    case "SET_AVATAR":
+      return {
+        ...state,
+        avatar: action.payload,
       };
     default:
       return state;

@@ -17,3 +17,8 @@ export const setAuth = (auth) => ({
   type: "SET_AUTH",
   payload: auth,
 });
+
+export const setBirthday = (date) => ({
+  type: "SET_BIRTHDAY",
+  payload: date,
+});
