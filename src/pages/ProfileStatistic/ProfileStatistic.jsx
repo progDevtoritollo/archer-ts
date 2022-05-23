@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import "./ClubStatistic.scss";
+import "./ProfileStatistic.scss";
 
 const ClubStatistic = () => {
   return (
