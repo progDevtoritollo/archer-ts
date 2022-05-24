@@ -31,7 +31,6 @@ const Home = () => {
         <Route exact path="/club/statistic" component={ClubStatistic} />
         <Route exact path="/club/activity" component={ClubActivity} />
         <Route exact path="/club/events" component={ClubEvents} />
-
         <Route path="/target" component={TrainingEvent} />
       </div>
       <FooterBar />
