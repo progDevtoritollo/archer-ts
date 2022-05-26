@@ -1,4 +1,4 @@
-import { LineChart, PieChart } from "./../../components/index.js";
+import { LineChart, PieChart, PolarChart } from "./../../components/index.js";
 
 const ProfileStatistic = () => {
   return (
@@ -12,6 +12,7 @@ const ProfileStatistic = () => {
       <div>Chart</div>
       <LineChart />
       <PieChart />
+      <PolarChart />
     </div>
   );
 };

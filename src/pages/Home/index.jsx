@@ -21,6 +21,7 @@ const Home = () => {
   return (
     <>
       <div className="home">
+        <ProfileStatistic />
         <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route
           exact

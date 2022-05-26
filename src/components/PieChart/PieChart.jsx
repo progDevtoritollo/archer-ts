@@ -6,11 +6,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
   const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: [12, 19, 3, 5, 2, 3, 5, 4, 2, 10],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -34,9 +34,7 @@ const PieChart = () => {
 
   return (
     <div>
-      <span>
-        Кол-во попаданий в каждый участок мишени в десятку - 5 попаданий{" "}
-      </span>
+      {/* Кол-во попаданий в каждый участок мишени  */}
       <Pie data={data} />
     </div>
   );
