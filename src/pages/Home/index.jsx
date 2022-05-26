@@ -33,6 +33,7 @@ const Home = () => {
         <Route exact path="/club/events" component={ClubEvents} />
         <Route path="/target" component={TrainingEvent} />
       </div>
+      <div className="fix-footer"></div>
       <FooterBar />
       {/* <div>
         Lorem Ipsum is simply dummy text of the printing and typesetting
