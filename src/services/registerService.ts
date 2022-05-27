@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import {API} from "./../commons"
 
 class RegisterService {
-  API_ENDPOINT = 'http://localhost:5000/signup'
+  API_ENDPOINT = API + "/auth/signup";
 
   async Register(registerData: object) {
     axios.defaults.headers.common['accept'] = 'application/json'

@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import {API} from "./../commons"
 
 class LoginService {
-  API_ENDPOINT = 'http://localhost:5000/signin'
+  API_ENDPOINT = API +'/auth/login'
 
   async Login(loginData: object) {
     axios.defaults.headers.common['accept'] = 'application/json'

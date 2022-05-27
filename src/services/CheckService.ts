@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import {API} from "./../commons"
 
 class CheckService {
-  API_ENDPOINT = 'http://localhost:5000/check/create'
+  API_ENDPOINT = API + '/check/create'
 
   async Post(Data: object) {
     axios.defaults.headers.common['accept'] = 'application/json'
