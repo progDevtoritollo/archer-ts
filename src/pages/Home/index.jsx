@@ -2,9 +2,6 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import { FooterBar } from "../../components";
-// import ProfileNotification from "./../ProfileNotification/ProfileNotification";
-// import ProfileSettings from "./../ProfileSettings/ProfileSettings";
-// import TrainingEvent from "./../TrainingEvent/TrainingEvent";
 import {
   ProfileNotification,
   ProfileSettings,
@@ -22,7 +19,6 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        {/* <ProfileStatistic /> */}
         <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route
           exact
@@ -30,10 +26,12 @@ const Home = () => {
           component={ProfileNotification}
         />
         <Route exact path="/profile/statistic" component={ProfileStatistic} />
+
         <Route exact path="/club/statistic" component={ClubStatistic} />
         <Route exact path="/club/activity" component={ClubActivity} />
         <Route exact path="/club/events" component={ClubEvents} />
         <Route exact path="/club/settings" component={ClubSettings} />
+
         <Route path="/target" component={TrainingEvent} />
       </div>
       <div className="fix-footer"></div>

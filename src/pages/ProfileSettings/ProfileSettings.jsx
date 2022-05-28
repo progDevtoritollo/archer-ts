@@ -28,7 +28,6 @@ const ProfileSettings = () => {
 
   const handleSetSurname = (e) => {
     dispatch(setSurname(e.target.value));
-    console.log(e.target.value);
   };
   const hadleSubmit = () => {
     console.log("send data Profile Settings");
