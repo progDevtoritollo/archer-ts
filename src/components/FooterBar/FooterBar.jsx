@@ -3,7 +3,7 @@ import { TabBar, Popup } from "antd-mobile";
 import { Avatar, Badge } from "antd";
 import { UserOutline } from "antd-mobile-icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "./../../redux/actions/user";
 
 import {
@@ -13,6 +13,8 @@ import {
   SettingOutlined,
   BellOutlined,
   LoginOutlined,
+  BookOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 
 import { useHistory, useLocation, Link } from "react-router-dom";
@@ -20,6 +22,7 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import "./FooterBar.scss";
 
 const FooterBar: React.FC = () => {
+  const { isCoach } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -30,6 +33,7 @@ const FooterBar: React.FC = () => {
   };
   const [visibleAvatar, setVisibleAvatar] = useState(false);
   const [visibleClub, setVisibleClub] = useState(false);
+  const [visibleCoach, setVisibleCoach] = useState(false);
   const [visibleMore, setVisibleMore] = useState(false);
 
   return (
@@ -53,7 +57,16 @@ const FooterBar: React.FC = () => {
         />
         <h6>Club</h6>
       </div>
-
+      {isCoach && (
+        <div className="footer-item">
+          <TeamOutlined
+            onClick={() => {
+              setVisibleCoach(true);
+            }}
+          />
+          <h6>Coach</h6>
+        </div>
+      )}
       <Link className="footer-item" to="/target">
         <FireOutlined />
         <h6>Target</h6>
@@ -94,8 +107,15 @@ const FooterBar: React.FC = () => {
           <TabBar.Item
             className="footer-item"
             key={"/profile/statistic"}
-            icon={<FireOutlined />}
+            icon={<LineChartOutlined />}
             title={"Statistic"}
+            badge={0}
+          />
+          <TabBar.Item
+            className="footer-item"
+            key={"/profile/checks"}
+            icon={<BookOutlined />}
+            title={"Checks"}
             badge={0}
           />
           <TabBar.Item
@@ -126,7 +146,7 @@ const FooterBar: React.FC = () => {
           <TabBar.Item
             className="footer-item"
             key={"/club/statistic"}
-            icon={<UserOutline />}
+            icon={<LineChartOutlined />}
             title={"Statistic"}
           />
           <TabBar.Item
@@ -141,6 +161,53 @@ const FooterBar: React.FC = () => {
             icon={<FireOutlined />}
             title={"Events"}
             badge={1}
+          />
+          <TabBar.Item
+            className="footer-item"
+            key={"/club/checks"}
+            icon={<BookOutlined />}
+            title={"Checks"}
+            badge={0}
+          />
+          <TabBar.Item
+            className="footer-item"
+            key={"/club/settings"}
+            icon={<SettingOutlined />}
+            title={"Settings"}
+          />
+        </TabBar>
+      </Popup>
+      <Popup
+        visible={visibleCoach}
+        onMaskClick={() => {
+          setVisibleCoach(false);
+        }}
+        bodyStyle={{ minHeight: "4.5vh" }}
+      >
+        <TabBar
+          activeKey={pathname}
+          onChange={(value: string) => setRouteActive(value)}
+        >
+          <TabBar.Item
+            className="footer-item"
+            key={"/club/settings"}
+            icon={<SettingOutlined />}
+            title={"Settings"}
+          />
+
+          <TabBar.Item
+            className="footer-item"
+            key={"/club/events"}
+            icon={<FireOutlined />}
+            title={"Events"}
+            badge={1}
+          />
+          <TabBar.Item
+            className="footer-item"
+            key={"/club/checks"}
+            icon={<BookOutlined />}
+            title={"Checks"}
+            badge={0}
           />
           <TabBar.Item
             className="footer-item"

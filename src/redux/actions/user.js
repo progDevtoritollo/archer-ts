@@ -22,3 +22,8 @@ export const setBirthday = (date) => ({
   type: "SET_BIRTHDAY",
   payload: date,
 });
+
+export const setCoach = (isCoach) => ({
+  type: "SET_COACH",
+  payload: isCoach,
+});

@@ -1,4 +1,4 @@
-import { Form, Input, Radio, Select, DatePicker } from "antd";
+import { Form, Input, TreeSelect, DatePicker, Button } from "antd";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
@@ -6,21 +6,20 @@ import moment from "moment";
 import "./ProfileSettings.scss";
 import { setName, setSurname, setBirthday } from "./../../redux/actions/user";
 
+const { TreeNode } = TreeSelect;
+const dateFormat = "YYYY/MM/DD";
+
 const ProfileSettings = () => {
   const dispatch = useDispatch();
   const { name, surname, birthday } = useSelector(({ user }) => user);
-  const dateFormat = "YYYY/MM/DD";
-  const [componentSize, setComponentSize] = useState("default");
 
-  const trainers = ["Валерия Владимировна", "Демо"];
+  const [archerLevel, setArcherLevel] = useState(undefined);
 
-  const onChangeDate = (date, dateString) => {
-    // console.log("full date", date);
-    dispatch(setBirthday(dateString));
+  const handleSelectProfileLevel = (level) => {
+    setArcherLevel(level);
   };
-
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
+  const onChangeDate = (date, dateString) => {
+    dispatch(setBirthday(dateString));
   };
 
   const handleSetName = (e) => {
@@ -31,7 +30,9 @@ const ProfileSettings = () => {
     dispatch(setSurname(e.target.value));
     console.log(e.target.value);
   };
-
+  const hadleSubmit = () => {
+    console.log("send data Profile Settings");
+  };
   return (
     <div className="profile-settings">
       <h1>ProfileSettings</h1>
@@ -47,18 +48,34 @@ const ProfileSettings = () => {
           span: 14,
         }}
         layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
+        onFinish={hadleSubmit}
       >
-        <Form.Item label="Размер мишени" name="size">
-          <Radio.Group>
-            <Radio.Button value="small">Small</Radio.Button>
-            <Radio.Button value="default">Default</Radio.Button>
-            <Radio.Button value="large">Large</Radio.Button>
-          </Radio.Group>
+        <Form.Item label="Уровень Стрелка ">
+          <TreeSelect
+            showSearch
+            style={{ width: "100%" }}
+            value={archerLevel}
+            dropdownStyle={{ maxHeight: 500, overflow: "auto" }}
+            placeholder="Please select"
+            allowClear
+            treeDefaultExpandAll
+            onChange={handleSelectProfileLevel}
+          >
+            <TreeNode value="U" title="Юношеские">
+              <TreeNode value="U1" title="Юношеские 1 ранг" />
+              <TreeNode value="U2" title="Юношеские 2 ранг" />
+              <TreeNode value="U3" title="Юношеские 3 ранг" />
+            </TreeNode>
+            <TreeNode value="A" title="Взрослые">
+              <TreeNode value="A1" title="Взрослые 1 ранг" />
+              <TreeNode value="A2" title="Взрослые 2 ранг" />
+              <TreeNode value="A3" title="Взрослые 3 ранг" />
+            </TreeNode>
+            <TreeNode value="KMC" title="KMC" />
+            <TreeNode value="MC" title="MC" />
+            <TreeNode value="MCMK" title="MCMK" />
+            <TreeNode value="ZMS" title="ЗМС" />
+          </TreeSelect>
         </Form.Item>
         <Form.Item label="Имя">
           <Input value={name} onChange={handleSetName} />
@@ -66,22 +83,17 @@ const ProfileSettings = () => {
         <Form.Item label="Фамилия">
           <Input value={surname} onChange={handleSetSurname} />
         </Form.Item>
-        <Form.Item label="Тренер">
-          <Select>
-            {trainers.map((item, id) => (
-              <Select.Option key={id} value={item}>
-                {item}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-
         <Form.Item label="Дата рождения">
           <DatePicker
             format={dateFormat}
             onChange={onChangeDate}
             value={moment(birthday)}
           />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Изменить
+          </Button>
         </Form.Item>
       </Form>
     </div>
