@@ -1,12 +1,13 @@
 import { Form, Select, Switch, Button } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./ClubSettings.scss";
 import { setCoach } from "./../../redux/actions/user";
 
 const ClubSettings = () => {
-  const dispatch = useDispatch();
   const { isCoach } = useSelector(({ user }) => user);
+  const { name } = useSelector(({ club }) => club);
+  const dispatch = useDispatch();
   const clubs = ["Odessa", "Lviv"];
   const trainers = ["Валерия Владимировна", "Демо"];
 
@@ -17,7 +18,7 @@ const ClubSettings = () => {
 
   return (
     <div className="club-settings">
-      <h1>ClubSettings(имя клуба)</h1>
+      <h1>ClubSettings {name}</h1>
       <Form
         labelCol={{
           span: 4,
