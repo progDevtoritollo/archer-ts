@@ -1,6 +1,6 @@
 import { Form, Input, TreeSelect, DatePicker, Button } from "antd";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 
 import "./ProfileSettings.scss";
@@ -9,10 +9,8 @@ import { setName, setSurname, setBirthday } from "./../../redux/actions/user";
 const { TreeNode } = TreeSelect;
 const dateFormat = "YYYY/MM/DD";
 
-const ProfileSettings = () => {
+const ProfileSettings = ({ name, surname, birthday }) => {
   const dispatch = useDispatch();
-  const { name, surname, birthday } = useSelector(({ user }) => user);
-
   const [archerLevel, setArcherLevel] = useState(undefined);
 
   const handleSelectProfileLevel = (level) => {

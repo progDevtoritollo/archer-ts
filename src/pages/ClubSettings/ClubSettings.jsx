@@ -1,12 +1,11 @@
 import { Form, Select, Switch, Button } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./ClubSettings.scss";
-import { setCoach } from "./../../redux/actions/club";
+import { setCoach } from "./../../redux/actions/user";
 
-const ClubSettings = () => {
+const ClubSettings = ({ isCoach, name }) => {
   const dispatch = useDispatch();
-  const { isCoach, name } = useSelector(({ club }) => club);
   const clubs = ["Odessa", "Lviv"];
   const trainers = ["Валерия Владимировна", "Демо"];
 

@@ -1,6 +1,5 @@
 const initialState = {
   name: "",
-  isCoach: true,
   club: "",
   trainer: "",
 };
@@ -11,11 +10,6 @@ const club = (state = initialState, action) => {
       return {
         ...state,
         name: action.payload,
-      };
-    case "SET_COACH":
-      return {
-        ...state,
-        isCoach: action.payload,
       };
     default:
       return state;
