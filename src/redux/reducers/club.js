@@ -1,7 +1,7 @@
 const initialState = {
   clubName: "",
   trainer: "",
-  clubChecks: [],
+  checks: [],
   isChecksLoaded: false,
 };
 
@@ -27,7 +27,7 @@ const club = (state = initialState, action) => {
     case "SET_CLUB_CHECKS_LOADED":
       return {
         ...state,
-        isLoaded: action.payload,
+        isChecksLoaded: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import clubService from "./checkService";
+import clubService from "./../../services/checkService";
 
 export const setClubName = (name) => ({
   type: "SET_CLUB_NAME",
