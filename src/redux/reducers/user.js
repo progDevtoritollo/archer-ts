@@ -1,21 +1,16 @@
 const initialState = {
-  // email: "",
   name: "",
   surname: "",
   userLevel: undefined,
   birthday: "2000-01-01",
-  // avatar: "",
   isAuth: true,
   isCoach: false,
+  checks: [],
+  isChecksLoaded: false,
 };
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    // case "SET_EMAIL":
-    //   return {
-    //     ...state,
-    //     email: action.payload,
-    //   };
     case "SET_USERNAME":
       return {
         ...state,
@@ -37,15 +32,22 @@ const user = (state = initialState, action) => {
         ...state,
         birthday: action.payload,
       };
-    case "SET_AVATAR":
-      return {
-        ...state,
-        avatar: action.payload,
-      };
     case "SET_COACH":
       return {
         ...state,
         isCoach: action.payload,
+      };
+    case "SET_USER_CHECKS":
+      return {
+        ...state,
+        items: action.payload,
+        isChecksLoaded: true,
+      };
+
+    case "SET_USER_CHECKS_LOADED":
+      return {
+        ...state,
+        isChecksLoaded: action.payload,
       };
     default:
       return state;
