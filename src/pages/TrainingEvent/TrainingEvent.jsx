@@ -5,7 +5,7 @@ import Bullet from "../../assets/img/bullet.png";
 import { Button } from "antd";
 import BigTarget from "../../containers/BigTarget";
 import "./TrainingEvent.scss";
-import checkService from "../../services/checkService";
+import userService from "../../services/userService";
 
 const width = 15;
 
@@ -43,7 +43,7 @@ const columns = [
 const TrainingEvent = () => {
   async function postCheck(CheckData) {
     console.log("Received values of KR: ", CheckData);
-    let res = await checkService.Post(CheckData);
+    let res = await userService.postUserCheckCreate(CheckData);
     console.log(res);
   }
   // const [total, setTotal] = useState(0);

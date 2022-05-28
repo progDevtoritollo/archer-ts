@@ -6,7 +6,7 @@ const initialState = {
   birthday: "2000-01-01",
   // avatar: "",
   isAuth: true,
-  isCoach: true,
+  isCoach: false,
 };
 
 const user = (state = initialState, action) => {

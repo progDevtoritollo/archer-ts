@@ -1,15 +1,33 @@
 const initialState = {
-  name: "",
-  club: "",
+  clubName: "",
   trainer: "",
+  clubChecks: [],
+  isChecksLoaded: false,
 };
 
 const club = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_CLUBNAME":
+    case "SET_CLUB_NAME":
       return {
         ...state,
-        name: action.payload,
+        clubName: action.payload,
+      };
+    case "SET_CLUB_TRAINER":
+      return {
+        ...state,
+        trainer: action.payload,
+      };
+    case "SET_CLUB_CHECKS":
+      return {
+        ...state,
+        items: action.payload,
+        isChecksLoaded: true,
+      };
+
+    case "SET_CLUB_CHECKS_LOADED":
+      return {
+        ...state,
+        isLoaded: action.payload,
       };
     default:
       return state;

@@ -6,7 +6,7 @@ import { setCoach } from "./../../redux/actions/user";
 
 const ClubSettings = () => {
   const { isCoach } = useSelector(({ user }) => user);
-  const { name } = useSelector(({ club }) => club);
+  const { clubName } = useSelector(({ club }) => club);
   const dispatch = useDispatch();
   const clubs = ["Odessa", "Lviv"];
   const trainers = ["Валерия Владимировна", "Демо"];
@@ -18,7 +18,7 @@ const ClubSettings = () => {
 
   return (
     <div className="club-settings">
-      <h1>ClubSettings {name}</h1>
+      <h1>ClubSettings {clubName}</h1>
       <Form
         labelCol={{
           span: 4,
