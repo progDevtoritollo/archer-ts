@@ -4,6 +4,8 @@ export { default as ProfileSettings } from "./ProfileSettings/ProfileSettings";
 export { default as ProfileNotification } from "./ProfileNotification/ProfileNotification";
 export { default as ProfileChecks } from "./ProfileChecks/ProfileChecks";
 export { default as ClubActivity } from "./ClubActivity/ClubActivity";
+export { default as ClubMembers } from "./ClubMembers/ClubMembers";
+
 export { default as ClubEvents } from "./ClubEvents/ClubEvents";
 export { default as ClubSettings } from "./ClubSettings/ClubSettings";
 export { default as ClubStatistic } from "./ClubStatistic/ClubStatistic";

@@ -13,6 +13,7 @@ import {
   ClubEvents,
   ClubSettings,
   ProfileChecks,
+  ClubMembers,
 } from "./../index";
 
 import "./Home.scss";
@@ -29,9 +30,11 @@ const Home = () => {
         />
         <Route exact path="/profile/statistic" component={ProfileStatistic} />
         <Route exact path="/profile/checks" component={ProfileChecks} />
+
         <Route exact path="/club/statistic" component={ClubStatistic} />
         <Route exact path="/club/activity" component={ClubActivity} />
         <Route exact path="/club/events" component={ClubEvents} />
+        <Route exact path="/club/members" component={ClubMembers} />
         <Route exact path="/club/settings" component={ClubSettings} />
 
         <Route path="/target" component={TrainingEvent} />
