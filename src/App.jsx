@@ -36,8 +36,12 @@ function App() {
     return (
       <div className="wrapper">
         <Switch>
-          <Route
+          {/* <Route
             path="/"
+            render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
+          /> */}
+          <Route
+            path={["/oauth2/redirect", "/"]}
             render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
           />
         </Switch>

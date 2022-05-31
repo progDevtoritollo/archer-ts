@@ -6,6 +6,7 @@ class ClubService {
 
 
   async getClubChecks(){
+    
     axios.defaults.headers.common['accept'] = 'application/json'
     axios.defaults.headers.common['Content-Type'] = 'application/json'
     let response

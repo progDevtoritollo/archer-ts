@@ -10,7 +10,7 @@ class LoginService {
 
     let response
     response = await axios.post(`${this.API_ENDPOINT}`, loginData)
-    return response.data
+    return response
   }
 }
 const loginService = new LoginService()

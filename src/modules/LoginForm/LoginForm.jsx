@@ -6,18 +6,26 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import loginService from "./../../services/loginService";
 import { Block } from "./../../components";
 import { GOOGLE_API } from "./../../commons";
-
-async function login(loginData) {
-  console.log("Received values of form: ", loginData);
-  let res = await loginService.Login(loginData);
-  console.log(res);
-}
+import requestBuilder from "./../../utils/requestBuilder";
+import { setAuth } from "./../../redux/actions/user";
 
 const LoginForm = () => {
+  async function login(loginData) {
+    let res = await loginService.Login(loginData);
+    console.log(res);
+    if (res.status === 200 && res.data) {
+      requestBuilder.setToken(res.data.accessToken);
+      dispatch(setAuth(true));
+      <Redirect to="/" />;
+    }
+  }
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
 
   const onFinish = (loginData) => {
