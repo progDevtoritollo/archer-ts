@@ -1,23 +1,28 @@
 import { Form, Input, TreeSelect, DatePicker, Button } from "antd";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
+import userServices from "./../../services/userService";
 import "./ProfileSettings.scss";
-import { setName, setSurname, setBirthday } from "./../../redux/actions/user";
+import {
+  setRank,
+  setName,
+  setSurname,
+  setBirthday,
+} from "./../../redux/actions/user";
 
 const { TreeNode } = TreeSelect;
 const dateFormat = "YYYY/MM/DD";
 
 const ProfileSettings = () => {
-  const { name, surname, birthday } = useSelector(({ user }) => user);
+  const { name, surname, birthday, rank } = useSelector(({ user }) => user);
 
   const dispatch = useDispatch();
-  const [archerLevel, setArcherLevel] = useState(undefined);
 
   const handleSelectProfileLevel = (level) => {
-    setArcherLevel(level);
+    dispatch(setRank(level));
   };
+
   const onChangeDate = (date, dateString) => {
     dispatch(setBirthday(dateString));
   };
@@ -29,9 +34,18 @@ const ProfileSettings = () => {
   const handleSetSurname = (e) => {
     dispatch(setSurname(e.target.value));
   };
+
   const hadleSubmit = () => {
-    console.log("send data Profile Settings");
+    let data = {
+      rank,
+      name,
+      birthday,
+      surname,
+    };
+    console.log("send data ProfileSettings/userSettings: ", data);
+    userServices.postUserProfileUpdate(data);
   };
+
   return (
     <div className="profile-settings">
       <h1>ProfileSettings</h1>
@@ -53,7 +67,7 @@ const ProfileSettings = () => {
           <TreeSelect
             showSearch
             style={{ width: "100%" }}
-            value={archerLevel}
+            value={rank}
             dropdownStyle={{ maxHeight: 500, overflow: "auto" }}
             placeholder="Please select"
             allowClear

@@ -5,7 +5,7 @@ import requestBuilder from "./../utils/requestBuilder"
 
 class UserService {
   API_USER_PROFILE = API + '/user/profile/'
-  API_USER_PROFILE_UPDATE = API + '/user/update'
+  API_USER_PROFILE_UPDATE = API + '/user/me/update'
   API_USER_STATISTIC = API + '/user/statistic'
   API_USER_CHECKS = API + '/user/checks'
   API_USER_CHECK_CREATE = API + '/user/check/create'
@@ -22,9 +22,14 @@ class UserService {
   async postUserProfileUpdate(Data:object) {
     requestBuilder.makeSetDefaults()
 
-    let response
-    response = await axios.get(`${this.API_USER_PROFILE_UPDATE}`,Data)
-    return response.data
+    let res
+    res = await axios.post(`${this.API_USER_PROFILE_UPDATE}`,Data).then((res)=>{
+      console.log(res)
+      return res
+    }).catch((err)=>{
+      console.error(err)
+    })
+    return res
   }
   async getUserStatistic() {
     requestBuilder.makeSetDefaults()
