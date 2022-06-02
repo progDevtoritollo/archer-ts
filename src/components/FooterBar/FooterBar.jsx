@@ -15,6 +15,7 @@ import {
   LoginOutlined,
   BookOutlined,
   LineChartOutlined,
+  DatabaseOutlined,
 } from "@ant-design/icons";
 
 import { useHistory, useLocation, Link } from "react-router-dom";
@@ -152,7 +153,7 @@ const FooterBar: React.FC = () => {
           <TabBar.Item
             className="footer-item"
             key={"/club/activity"}
-            icon={<TeamOutlined />}
+            icon={<DatabaseOutlined />}
             title={"activity"}
           />
           <TabBar.Item
@@ -162,13 +163,7 @@ const FooterBar: React.FC = () => {
             title={"Events"}
             badge={1}
           />
-          <TabBar.Item
-            className="footer-item"
-            key={"/club/checks"}
-            icon={<BookOutlined />}
-            title={"Checks"}
-            badge={0}
-          />
+
           <TabBar.Item
             className="footer-item"
             key={"/club/settings"}
@@ -211,7 +206,7 @@ const FooterBar: React.FC = () => {
           />
           <TabBar.Item
             className="footer-item"
-            key={"/club/member"}
+            key={"/club/members"}
             icon={<MenuOutlined />}
             title={"Member"}
           />
