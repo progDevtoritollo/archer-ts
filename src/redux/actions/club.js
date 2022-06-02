@@ -1,5 +1,26 @@
 import clubService from "./../../services/checkService";
 
+export const setUsersLoaded = (payload) => ({
+  type: "SET_USERS_LOADED",
+  payload,
+});
+
+export const fetchUsers = () => (dispatch) => {
+  dispatch({
+    type: "SET_USERS_LOADED",
+    payload: false,
+  });
+
+  clubService.getUserChecks().then(({ data }) => {
+    dispatch(setClubChecks(data));
+  });
+};
+
+export const setUsers = (payload) => ({
+  type: "SET_USERS",
+  payload,
+});
+
 export const setClubName = (name) => ({
   type: "SET_CLUB_NAME",
   payload: name,

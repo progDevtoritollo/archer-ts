@@ -3,6 +3,8 @@ const initialState = {
   trainer: "",
   checks: [],
   isChecksLoaded: false,
+  users: [],
+  isUsersLoaded: false,
 };
 
 const club = (state = initialState, action) => {
@@ -16,6 +18,17 @@ const club = (state = initialState, action) => {
       return {
         ...state,
         trainer: action.payload,
+      };
+    case "SET_USERS":
+      return {
+        ...state,
+        isUsersLoaded: action.payload,
+      };
+    case "SET_USERS_LOADED":
+      return {
+        ...state,
+        users: action.payload,
+        isUsersLoaded: true,
       };
     case "SET_CLUB_CHECKS":
       return {
