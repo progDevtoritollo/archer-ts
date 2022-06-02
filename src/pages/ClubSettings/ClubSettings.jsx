@@ -1,61 +1,152 @@
-import { Form, Select, Switch, Button } from "antd";
+import { Form, Select, Switch, Button, Radio, Input } from "antd";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./ClubSettings.scss";
 import { setCoach } from "./../../redux/actions/user";
 
 const ClubSettings = () => {
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [build, setBuild] = useState("");
   const { isCoach } = useSelector(({ user }) => user);
   const { clubName } = useSelector(({ club }) => club);
   const dispatch = useDispatch();
-  const clubs = ["Odessa", "Lviv"];
+  const clubs = ["ДЮШ40", "Olimpic"];
+  const cites = ["Odessa", "Lviv"];
   const trainers = ["Валерия Владимировна", "Демо"];
+
+  const [pageSwitch, setPageSwitch] = useState(true);
 
   const handleSetCoach = (checked) => {
     dispatch(setCoach(checked));
     console.log(checked);
   };
+  const handleAddSubmit = (data) => {
+    console.log("send data Club Settings", data);
+  };
+
+  const handleCreateSubmit = (data) => {
+    console.log("send data Club Create", data);
+  };
 
   return (
     <div className="club-settings">
       <h1>ClubSettings {clubName}</h1>
-      <Form
-        labelCol={{
-          span: 4,
+      <Radio.Group
+        value={pageSwitch}
+        onChange={(e) => {
+          setPageSwitch(e.target.value);
         }}
-        wrapperCol={{
-          span: 14,
-        }}
-        layout="horizontal"
       >
-        <Form.Item label="Тренер ">
-          <Switch default={isCoach} onChange={handleSetCoach} />
-        </Form.Item>
-        <Form.Item label="Клуб ">
-          <Select>
-            {clubs.map((item, id) => (
-              <Select.Option key={id} value={item}>
-                {item}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item label="Тренер ">
-          <Select>
-            {trainers.map((item, id) => (
-              <Select.Option key={id} value={item}>
-                {item}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Изменить
-          </Button>
-        </Form.Item>
-      </Form>
-      <span>Инфомация о клубе</span>
+        <Radio.Button value={true}>Добавиться</Radio.Button>
+        <Radio.Button value={false}>Создать</Radio.Button>
+      </Radio.Group>
+
+      {pageSwitch ? (
+        <>
+          <Form
+            labelCol={{
+              span: 4,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+            onFinish={handleAddSubmit}
+          >
+            <Form.Item label="Тренер ">
+              <Switch default={isCoach} onChange={handleSetCoach} />
+            </Form.Item>
+            <Form.Item label="Город ">
+              <Select>
+                {cites.map((item, id) => (
+                  <Select.Option key={id} value={item}>
+                    {item}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="Клуб ">
+              <Select>
+                {clubs.map((item, id) => (
+                  <Select.Option key={id} value={item}>
+                    {item}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="Тренер ">
+              <Select>
+                {trainers.map((item, id) => (
+                  <Select.Option key={id} value={item}>
+                    {item}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Войти в клуб
+              </Button>
+            </Form.Item>
+          </Form>
+          <span>Инфомация о клубе</span>
+        </>
+      ) : (
+        <>
+          <h3>Create Club </h3>
+          <Form
+            labelCol={{
+              span: 4,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+            onFinish={handleCreateSubmit}
+          >
+            <Form.Item label="Страна ">
+              <Input
+                value={country}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                }}
+              />
+            </Form.Item>
+            <Form.Item label="Город ">
+              <Input
+                value={city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+              />
+            </Form.Item>
+            <Form.Item label="Улица ">
+              <Input
+                value={street}
+                onChange={(e) => {
+                  setStreet(e.target.value);
+                }}
+              />
+            </Form.Item>
+            <Form.Item label="здание ">
+              <Input
+                value={build}
+                onChange={(e) => {
+                  setBuild(e.target.value);
+                }}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Создать
+              </Button>
+            </Form.Item>
+          </Form>
+        </>
+      )}
     </div>
   );
 };
