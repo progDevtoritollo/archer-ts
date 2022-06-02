@@ -1,12 +1,17 @@
 import userService from "./../../services/userService";
 export const setName = (name) => ({
-  type: "SET_USERNAME",
+  type: "SET_USER_NAME",
   payload: name,
 });
 
 export const setSurname = (surname) => ({
-  type: "SET_USERSUNAME",
+  type: "SET_USER_SURNAME",
   payload: surname,
+});
+
+export const setRank = (rank) => ({
+  type: "SET_USER_RANK",
+  payload: rank,
 });
 
 export const setAuth = (auth) => ({

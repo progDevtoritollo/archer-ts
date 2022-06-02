@@ -1,7 +1,7 @@
 const initialState = {
   name: "",
   surname: "",
-  userLevel: undefined,
+  rank: undefined,
   birthday: "2000-01-01",
   isAuth: true,
   isCoach: false,
@@ -12,12 +12,12 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_USERNAME":
+    case "SET_USER_NAME":
       return {
         ...state,
         name: action.payload,
       };
-    case "SET_USERSUNAME":
+    case "SET_USER_SURNAME":
       return {
         ...state,
         surname: action.payload,
@@ -38,10 +38,11 @@ const user = (state = initialState, action) => {
         ...state,
         isCoach: action.payload,
       };
+
     case "SET_USER_CHECKS":
       return {
         ...state,
-        items: action.payload,
+        checks: action.payload,
         isChecksLoaded: true,
       };
 
@@ -54,6 +55,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userPage: action.payload,
+      };
+    case "SET_USER_RANK":
+      return {
+        ...state,
+        rank: action.payload,
       };
     default:
       return state;
