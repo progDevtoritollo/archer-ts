@@ -44,3 +44,8 @@ export const setClubChecks = (payload) => ({
   type: "SET_USER_CHECKS",
   payload,
 });
+
+export const setUserPage = (payload) => ({
+  type: "SET_USER_PAGE",
+  payload,
+});

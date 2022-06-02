@@ -1,0 +1,20 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  &__avatar {
+    margin-right: 9px;
+  }
+  &__info-block {
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    &-name {
+    }
+    &-rang {
+    }
+  }
+
+  &__invitation-duel {
+  }
+}

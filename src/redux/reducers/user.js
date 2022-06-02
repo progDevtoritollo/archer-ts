@@ -7,6 +7,7 @@ const initialState = {
   isCoach: false,
   checks: [],
   isChecksLoaded: false,
+  userPage: {},
 };
 
 const user = (state = initialState, action) => {
@@ -48,6 +49,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isChecksLoaded: action.payload,
+      };
+    case "SET_USER_PAGE":
+      return {
+        ...state,
+        userPage: action.payload,
       };
     default:
       return state;
