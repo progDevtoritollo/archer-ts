@@ -6,12 +6,13 @@ import "./ClubSettings.scss";
 import { setCoach } from "./../../redux/actions/user";
 
 const ClubSettings = () => {
+  const [clubName, setСlubName] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
-  const [build, setBuild] = useState("");
+  const [building, setBuilding] = useState("");
   const { isCoach } = useSelector(({ user }) => user);
-  const { clubName } = useSelector(({ club }) => club);
+  // const { clubName } = useSelector(({ club }) => club);
   const dispatch = useDispatch();
   const clubs = ["ДЮШ40", "Olimpic"];
   const cites = ["Odessa", "Lviv"];
@@ -27,7 +28,14 @@ const ClubSettings = () => {
     console.log("send data Club Settings", data);
   };
 
-  const handleCreateSubmit = (data) => {
+  const handleCreateSubmit = () => {
+    let data = {
+      clubName,
+      country,
+      city,
+      street,
+      building,
+    };
     console.log("send data Club Create", data);
   };
 
@@ -107,6 +115,14 @@ const ClubSettings = () => {
             layout="horizontal"
             onFinish={handleCreateSubmit}
           >
+            <Form.Item label="Название Клуба ">
+              <Input
+                value={clubName}
+                onChange={(e) => {
+                  setСlubName(e.target.value);
+                }}
+              />
+            </Form.Item>
             <Form.Item label="Страна ">
               <Input
                 value={country}
@@ -133,9 +149,9 @@ const ClubSettings = () => {
             </Form.Item>
             <Form.Item label="здание ">
               <Input
-                value={build}
+                value={building}
                 onChange={(e) => {
-                  setBuild(e.target.value);
+                  setBuilding(e.target.value);
                 }}
               />
             </Form.Item>
