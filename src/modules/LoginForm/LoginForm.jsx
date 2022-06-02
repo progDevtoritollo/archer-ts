@@ -28,7 +28,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
 
-  const onFinish = (loginData) => {
+  const handleSubmit = (loginData) => {
     login(loginData);
   };
 
@@ -52,7 +52,7 @@ const LoginForm = () => {
           initialValues={{
             remember: true,
           }}
-          onFinish={onFinish}
+          onFinish={handleSubmit}
         >
           <Form.Item
             hasFeedback
