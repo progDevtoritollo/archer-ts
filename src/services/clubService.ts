@@ -1,14 +1,13 @@
 import axios from 'axios';
 import {API} from "../commons"
 
+import requestBuilder from "./../utils/requestBuilder"
 class ClubService {
   API_GET_CHECKS = API + '/club/checks/all'
 
 
   async getClubChecks(){
-    
-    axios.defaults.headers.common['accept'] = 'application/json'
-    axios.defaults.headers.common['Content-Type'] = 'application/json'
+    requestBuilder.makeSetDefaults()
     let response
     response = await axios.get(`${this.API_GET_CHECKS}`)
     return response.data

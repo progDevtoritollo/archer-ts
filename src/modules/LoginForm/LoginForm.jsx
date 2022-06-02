@@ -20,8 +20,8 @@ const LoginForm = () => {
     let res = await loginService.Login(loginData);
     console.log(res);
     if (res.status === 200 && res.data) {
-      requestBuilder.setToken(res.data.accessToken);
       dispatch(setAuth(true));
+      requestBuilder.setToken(res.data.accessToken);
       <Redirect to="/" />;
     }
   }
