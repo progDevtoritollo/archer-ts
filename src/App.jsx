@@ -27,13 +27,13 @@ function App() {
     <div className="wrapper">
       <Switch>
         <Route
-          path={["/", "/oauth2/redirect"]}
-          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
-        />
-        <Route
           exact
           path={["/signin", "/signup", "/signup/verify"]}
           component={Auth}
+        />
+        <Route
+          path={["/", "/oauth2/redirect"]}
+          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
         />
       </Switch>
     </div>

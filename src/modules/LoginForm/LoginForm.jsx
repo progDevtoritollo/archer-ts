@@ -4,7 +4,7 @@ import {
   LockOutlined,
   GoogleSquareFilled,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -16,13 +16,13 @@ import requestBuilder from "./../../utils/requestBuilder";
 import { setAuth } from "./../../redux/actions/user";
 
 const LoginForm = () => {
+  const history = useHistory();
   async function login(loginData) {
     let res = await loginService.Login(loginData);
-    console.log(res);
-    if (res.status === 200 && res.data) {
+    if (res.status === 200) {
       dispatch(setAuth(true));
       requestBuilder.setToken(res.data.accessToken);
-      <Redirect to="/" />;
+      history.push("/");
     }
   }
   const dispatch = useDispatch();
