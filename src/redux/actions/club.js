@@ -1,7 +1,12 @@
-import clubService from "./../../services/checkService";
+import clubService from "./../../services/clubService";
 
 export const setUsersLoaded = (payload) => ({
   type: "SET_USERS_LOADED",
+  payload,
+});
+
+export const setOneCheck = (payload) => ({
+  type: "SET_CHECK",
   payload,
 });
 

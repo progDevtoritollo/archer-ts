@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { FooterBar, ItemUser } from "../../components";
+import { FooterBar, ItemCheck, ItemUser } from "../../components";
 
 import {
   ProfileNotification,
@@ -36,6 +36,7 @@ const Home = () => {
           <Route exact path="/club/events" component={ClubEvents} />
           <Route exact path="/club/settings" component={ClubSettings} />
           <Route path="/user/:id" component={ItemUser} />
+          <Route path="/check/:id" component={ItemCheck} />
           <Route path="/target" component={TrainingEvent} />
           <Route path="/404">
             <h1>404 - Not Found</h1>

@@ -3,9 +3,8 @@ import "./ClubStatistic.scss";
 import userService from "../../services/userService";
 import { setUserPage } from "./../../redux/actions/user";
 
-import { Radio } from "antd";
 import { useState } from "react";
-import { Skeleton, Card, Switch, Avatar } from "antd";
+import { Skeleton, Card, Switch, Avatar, Radio } from "antd";
 import { EllipsisOutlined, ThunderboltOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

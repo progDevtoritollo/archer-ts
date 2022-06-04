@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./ClubSettings.scss";
 import { setCoach } from "./../../redux/actions/user";
+import clubService from "../../services/clubService";
 
 const ClubSettings = () => {
   const [clubName, setСlubName] = useState("");
@@ -37,6 +38,7 @@ const ClubSettings = () => {
       building,
     };
     console.log("send data Club Create", data);
+    clubService.createClubs(data);
   };
 
   return (

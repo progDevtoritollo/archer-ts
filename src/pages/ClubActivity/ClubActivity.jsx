@@ -1,4 +1,5 @@
 import "./ClubActivity.scss";
+import { CheckList } from "./../../components/index";
 
 const ClubActivity = () => {
   return (
@@ -9,6 +10,7 @@ const ClubActivity = () => {
         контролльных, дуэли(стадии: началась и закончилась(с победителем )),
         сколько прошло времени с последней активности
       </span>
+      <CheckList />
     </div>
   );
 };

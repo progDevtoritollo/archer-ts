@@ -6,3 +6,4 @@ export { default as PieChart } from "./PieChart/PieChart";
 export { default as PolarChart } from "./PolarChart/PolarChart";
 export { default as ItemCheck } from "./ItemCheck/ItemCheck";
 export { default as ItemUser } from "./ItemUser/ItemUser";
+export { default as CheckList } from "./CheckList/CheckList";

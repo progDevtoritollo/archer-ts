@@ -5,6 +5,7 @@ const initialState = {
   isChecksLoaded: false,
   users: [],
   isUsersLoaded: false,
+  check: {},
 };
 
 const club = (state = initialState, action) => {
@@ -36,7 +37,11 @@ const club = (state = initialState, action) => {
         items: action.payload,
         isChecksLoaded: true,
       };
-
+    case "SET_CHECK":
+      return {
+        ...state,
+        check: action.payload,
+      };
     case "SET_CLUB_CHECKS_LOADED":
       return {
         ...state,

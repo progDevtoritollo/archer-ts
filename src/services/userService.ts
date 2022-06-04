@@ -11,12 +11,12 @@ class UserService {
   API_USER_CHECK_CREATE = API + '/user/check/create'
 
 
-  async getUserProfile(id: number) {
+  async getUserProfile(userid: number) {
     requestBuilder.makeSetDefaults()
 
     let response
     response = await axios.get(this.API_USER_PROFILE+
-      `${id}`)
+      `${userid}`)
     return response.data
   }
   async postUserProfileUpdate(Data:object) {

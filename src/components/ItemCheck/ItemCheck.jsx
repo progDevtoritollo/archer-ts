@@ -1,7 +1,7 @@
 import "./ItemCheck.scss";
 
 import React, { useState } from "react";
-import { Skeleton, Card, Switch, Avatar } from "antd";
+import { Skeleton, Card, Switch, Avatar, Table } from "antd";
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -9,7 +9,41 @@ import {
 } from "@ant-design/icons";
 const { Meta } = Card;
 
+const width = 15;
+
+const columns = [
+  {
+    title: "С",
+    dataIndex: "number",
+    width: 5,
+  },
+  {
+    // title: "Выстрелы",
+    children: [
+      {
+        title: "1",
+        dataIndex: "firstShot",
+        key: "firstShot",
+        width: width,
+      },
+      {
+        title: "2",
+        dataIndex: "secondShot",
+        key: "secondShot",
+        width: width,
+      },
+      {
+        title: "3",
+        dataIndex: "thirdShot",
+        key: "thirdShot",
+        width: width,
+      },
+    ],
+  },
+];
+
 const ItemCheck = () => {
+  const [dataTable, setDataTable] = useState({});
   const [loading, setLoading] = useState(true);
 
   const onChange = (checked) => {
@@ -18,6 +52,7 @@ const ItemCheck = () => {
 
   return (
     <>
+      <h1>ItemCheck</h1>
       <Switch checked={!loading} onChange={onChange} />
 
       <div className="check">
@@ -28,7 +63,7 @@ const ItemCheck = () => {
       </div>
       <Card
         style={{
-          width: 300,
+          width: "100%",
           marginTop: 16,
         }}
         actions={[
@@ -45,7 +80,14 @@ const ItemCheck = () => {
           />
         </Skeleton>
       </Card>
-      <Switch />
+      <div className="table">
+        {/* <Table
+          columns={columns}
+          dataSource={dataTable}
+          pagination={false}
+          bordered
+        /> */}
+      </div>
     </>
   );
 };
