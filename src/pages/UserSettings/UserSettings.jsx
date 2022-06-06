@@ -2,19 +2,19 @@ import { Form, Input, TreeSelect, DatePicker, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import userServices from "./../../services/userService";
-import "./ProfileSettings.scss";
+import userServices from "../../services/userService";
+import "./UserSettings.scss";
 import {
   setRank,
   setName,
   setSurname,
   setBirthday,
-} from "./../../redux/actions/user";
+} from "../../redux/actions/user";
 
 const { TreeNode } = TreeSelect;
 const dateFormat = "YYYY/MM/DD";
 
-const ProfileSettings = () => {
+const UserSettings = () => {
   const { name, surname, birthday, rank } = useSelector(({ user }) => user);
 
   const dispatch = useDispatch();
@@ -42,13 +42,13 @@ const ProfileSettings = () => {
       birthday,
       surname,
     };
-    console.log("send data ProfileSettings/userSettings: ", data);
+    console.log("send data UserSettings/userSettings: ", data);
     userServices.postUserProfileUpdate(data);
   };
 
   return (
     <div className="profile-settings">
-      <h1>ProfileSettings</h1>
+      <h1>UserSettings</h1>
       <span>
         Фамилия дата рождения трернер размер мишени(в зависимости от возраста по
         автомату) аватарка на сколько заполнен профиль
@@ -113,4 +113,4 @@ const ProfileSettings = () => {
   );
 };
 
-export default ProfileSettings;
+export default UserSettings;

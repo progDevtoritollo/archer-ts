@@ -4,15 +4,15 @@ import { Route, Switch } from "react-router-dom";
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
 
 import {
-  ProfileNotification,
-  ProfileSettings,
+  UserNotification,
+  UserSettings,
   TrainingEvent,
-  ProfileStatistic,
+  UserStatistic,
   ClubStatistic,
   ClubActivity,
   ClubEvents,
   ClubSettings,
-  ProfileChecks,
+  UserChecks,
 } from "./../index";
 
 import "./Home.scss";
@@ -22,14 +22,10 @@ const Home = () => {
     <>
       <div className="home">
         <Switch>
-          <Route exact path="/profile/settings" component={ProfileSettings} />
-          <Route
-            exact
-            path="/profile/notification"
-            component={ProfileNotification}
-          />
-          <Route exact path="/profile/statistic" component={ProfileStatistic} />
-          <Route exact path="/profile/checks" component={ProfileChecks} />
+          <Route exact path="/user/settings" component={UserSettings} />
+          <Route exact path="/user/notification" component={UserNotification} />
+          <Route exact path="/user/statistic" component={UserStatistic} />
+          <Route exact path="/user/checks" component={UserChecks} />
 
           <Route exact path="/club/statistic" component={ClubStatistic} />
           <Route exact path="/club/activity" component={ClubActivity} />

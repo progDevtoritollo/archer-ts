@@ -1,10 +1,10 @@
 export { default as Auth } from "./Auth";
 export { default as Home } from "./Home";
 
-export { default as ProfileSettings } from "./ProfileSettings/ProfileSettings";
-export { default as ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
-export { default as ProfileNotification } from "./ProfileNotification/ProfileNotification";
-export { default as ProfileChecks } from "./ProfileChecks/ProfileChecks";
+export { default as UserSettings } from "./UserSettings/UserSettings";
+export { default as UserStatistic } from "./UserStatistic/UserStatistic";
+export { default as UserNotification } from "./UserNotification/UserNotification";
+export { default as UserChecks } from "./UserChecks/UserChecks";
 
 export { default as ClubActivity } from "./ClubActivity/ClubActivity";
 export { default as ClubEvents } from "./ClubEvents/ClubEvents";
