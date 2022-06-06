@@ -1,2 +1,17 @@
-.profile-settings {
+.user-settings {
+  .header {
+    display: flex;
+    margin: 5px;
+    align-items: baseline;
+  }
+  h1 {
+    display: inline;
+  }
+  .link {
+    color: red;
+    margin-left: auto;
+  }
+  &__log-out {
+    font-size: 1.7rem;
+  }
 }

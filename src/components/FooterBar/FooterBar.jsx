@@ -3,28 +3,23 @@ import { TabBar, Popup } from "antd-mobile";
 import { Avatar, Badge } from "antd";
 import { UserOutline } from "antd-mobile-icons";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "./../../redux/actions/user";
-
+import { useSelector } from "react-redux";
 import {
   TeamOutlined,
   FireOutlined,
   MenuOutlined,
   SettingOutlined,
   BellOutlined,
-  LoginOutlined,
   BookOutlined,
   LineChartOutlined,
   DatabaseOutlined,
 } from "@ant-design/icons";
-
 import { useHistory, useLocation, Link } from "react-router-dom";
 
 import "./FooterBar.scss";
 
 const FooterBar: React.FC = () => {
   const { isCoach } = useSelector(({ user }) => user);
-  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const { pathname } = location;
@@ -117,18 +112,6 @@ const FooterBar: React.FC = () => {
             key={"/user/checks"}
             icon={<BookOutlined />}
             title={"Checks"}
-            badge={0}
-          />
-          <TabBar.Item
-            onClick={() => {
-              dispatch(setAuth(false));
-              history.push("/");
-              // DELITE TOKEN FROM LOCKAL STORE
-            }}
-            className="footer-item"
-            key={"/Logout "} //&&&?????????????????
-            icon={<LoginOutlined />}
-            title={"Log out"}
             badge={0}
           />
         </TabBar>

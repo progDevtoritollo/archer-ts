@@ -1,7 +1,10 @@
 import { Form, Input, TreeSelect, DatePicker, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import { LogoutOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
+import { setAuth } from "./../../redux/actions/user";
 import userServices from "../../services/userService";
 import "./UserSettings.scss";
 import {
@@ -47,8 +50,20 @@ const UserSettings = () => {
   };
 
   return (
-    <div className="profile-settings">
-      <h1>UserSettings</h1>
+    <div className="user-settings">
+      <div className="header">
+        <h1>UserSettings</h1>
+        <Link
+          className="link"
+          to={"/signin"}
+          onClick={() => {
+            dispatch(setAuth(false));
+            localStorage.removeItem("TOKEN");
+          }}
+        >
+          <LogoutOutlined className="user-settings__log-out" />
+        </Link>
+      </div>
       <span>
         Фамилия дата рождения трернер размер мишени(в зависимости от возраста по
         автомату) аватарка на сколько заполнен профиль
