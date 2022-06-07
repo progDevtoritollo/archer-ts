@@ -7,7 +7,6 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import loginService from "./../../services/loginService";
 import { Block } from "./../../components";
