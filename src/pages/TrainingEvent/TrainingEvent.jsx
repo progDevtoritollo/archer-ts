@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Table, Button, Select } from "antd";
 
 import Bullet from "../../assets/img/bullet.png";
-import { Button } from "antd";
 import BigTarget from "../../containers/BigTarget";
 import "./TrainingEvent.scss";
 import userService from "../../services/userService";
 
+const { Option } = Select;
 const width = 15;
 
 const columns = [
@@ -41,11 +41,23 @@ const columns = [
 ];
 
 const TrainingEvent = () => {
+  const [distance, setDistance] = useState(18);
+  var check = {
+    series: [],
+    distance: distance,
+  };
   async function postCheck(CheckData) {
     console.log("Received values of KR: ", CheckData);
     let res = await userService.postUserCheckCreate(CheckData);
     console.log(res);
   }
+
+  const handleChange = (value) => {
+    check.distance = value;
+    console.log(`selected ${value}`, check);
+    setDistance(+value);
+    console.log(distance);
+  };
   // const [total, setTotal] = useState(0);
   const [bullet, setBullet] = useState([]);
 
@@ -108,11 +120,7 @@ const TrainingEvent = () => {
     let totalScore = 0;
     let seriesNumber = 0;
 
-    let check = {
-      series: [],
-      total: totalScore,
-      distance: 18,
-    };
+    // check.total = totalScore;
 
     bullet.forEach((element, index) => {
       totalScore += bullet[index].score;
@@ -147,7 +155,21 @@ const TrainingEvent = () => {
     <div className="trainningEvent-wrapper">
       {/* <div className="trainningEvent-wrapper" style={{ position: "absolute" }}> */}
       <div className="trainningEvent__target-block">
-        <h1>Check </h1>
+        <div className="trainningEvent__header">
+          <h1>Check </h1>
+          <Select
+            defaultValue="18"
+            style={{ width: 120 }}
+            onChange={handleChange}
+          >
+            <Option value="18">18</Option>
+            <Option value="30">30</Option>
+            {/* <Option value="disabled" disabled>
+              Disabled
+            </Option> */}
+            <Option value="60">60</Option>
+          </Select>
+        </div>
 
         <BigTarget handleClick={handleClick} className="target" />
         {bullet.map((value) => {
