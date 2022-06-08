@@ -281,7 +281,6 @@ const check = {
 };
 
 const ItemCheck = () => {
-  const [dataTable, setDataTable] = useState({});
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(null);
   const [distance, setDistance] = useState(null);
@@ -345,9 +344,6 @@ const ItemCheck = () => {
           pagination={false}
           bordered
         />
-        {distance}
-        {"  "}
-        {total}
       </div>
     </>
   );

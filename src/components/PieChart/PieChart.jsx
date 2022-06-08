@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
-  const data = {
-    labels: ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+const PieChart = (propsData) => {
+  var data = {
+    labels: ["1 ", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11 "],
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3, 5, 4, 2, 10],
+        data: propsData.data,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

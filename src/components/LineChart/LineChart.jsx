@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-const LineChart = () => {
+const LineChart = (propsData) => {
   const options = {
     responsive: true,
     plugins: {
@@ -41,18 +41,18 @@ const LineChart = () => {
       "Мар",
       "Апр",
       "Май",
-      "Июнь",
-      "Июль",
-      "Ав",
+      "Июн",
+      "Июл",
+      "Авг",
       "Сен",
       "Окт",
-      "Нояб",
-      "Декаб",
+      "Ноя",
+      "Дек",
     ],
     datasets: [
       {
-        label: "Max mounth score",
-        data: [230, 170, 130, 160, 168, 285, 220, 228, 240, 180, 140, 126], // props data
+        label: "Mid mounth score",
+        data: propsData.data,
         backgroundColor: ["rgba(75, 192, 192, 0.6)"],
         borderWidth: 4,
       },
