@@ -8,10 +8,10 @@ class LoginService {
 
   async Login(loginData: object) {
     requestBuilder.makeSetDefaults()
-
-    let response
-    response = await axios.post(`${this.API_ENDPOINT}`, loginData)
-    return response
+    
+    await axios.post(`${this.API_ENDPOINT}`, loginData).then((res)=>{return res}).catch((error)=>{
+      console.error(error)
+    })
   }
 }
 const loginService = new LoginService()
