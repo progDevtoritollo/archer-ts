@@ -8,23 +8,25 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import requestBuilder from "./../../utils/requestBuilder";
 import loginService from "./../../services/loginService";
 import { Block } from "./../../components";
 import { GOOGLE_API } from "./../../commons";
-import requestBuilder from "./../../utils/requestBuilder";
 import { setAuth } from "./../../redux/actions/user";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   async function login(loginData) {
     let res = await loginService.Login(loginData);
+    console.log(res);
     if (res.status === 200) {
-      dispatch(setAuth(true));
       requestBuilder.setToken(res.data.accessToken);
+      dispatch(setAuth(true));
       history.push("/");
     }
   }
-  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
 
   const handleSubmit = (loginData) => {

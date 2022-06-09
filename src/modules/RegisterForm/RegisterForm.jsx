@@ -1,6 +1,7 @@
 import { Form, Input, Button } from "antd";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import {
   UserOutlined,
@@ -13,19 +14,32 @@ import {
 import { GOOGLE_API } from "./../../commons";
 import { Block } from "./../../components";
 import registerService from "./../../services/registerService";
-
-async function register(registerData, setSuccess) {
-  console.log("Received values of form: ", registerData);
-  let res = await registerService.Register(registerData);
-  console.log(res);
-  if (res) {
-    setSuccess(false);
-  }
-}
+import loginService from "./../../services/loginService";
+import requestBuilder from "./../../utils/requestBuilder";
+import { setAuth } from "./../../redux/actions/user";
 
 const RegisterForm = (registerData) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [success, setSuccess] = useState(true);
 
+  async function register(registerData, setSuccess) {
+    let res = await registerService.Register(registerData);
+    if (res.status === 201) {
+      setSuccess(false);
+      let loginData = {
+        email: registerData.email,
+        password: registerData.password,
+      };
+
+      let res = await loginService.Login(loginData);
+      if (res.status === 200) {
+        requestBuilder.setToken(res.data.accessToken);
+        dispatch(setAuth(true));
+        history.push("/");
+      }
+    }
+  }
   const onFinish = (registerData) => {
     register(registerData, setSuccess);
   };

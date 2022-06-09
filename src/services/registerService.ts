@@ -9,9 +9,8 @@ class RegisterService {
   async Register(registerData: object) {
     requestBuilder.makeSetDefaults()
 
-    await axios.post(`${this.API_ENDPOINT}`, registerData).then((res)=>{return res}).catch((error)=>{
-      console.error(error)
-    })
+    let res = await axios.post(`${this.API_ENDPOINT}`, registerData)
+    return res
   }
 }
 const registerService = new RegisterService()
