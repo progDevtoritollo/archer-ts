@@ -15,7 +15,7 @@ import {
 } from "../../redux/actions/user";
 
 const { TreeNode } = TreeSelect;
-const dateFormat = "YYYY/MM/DD";
+const dateFormat = "YYYY-MM-DD";
 
 const UserSettings = () => {
   const { name, surname, birthday, rank } = useSelector(({ user }) => user);

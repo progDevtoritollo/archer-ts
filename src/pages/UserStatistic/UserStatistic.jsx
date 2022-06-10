@@ -7,9 +7,14 @@ const UserStatistic = () => {
   const [dataCharts, setDataCharts] = useState({});
 
   useEffect(() => {
-    let data = userService.getUserStatistic();
-    setDataCharts(data);
-    console.log(dataCharts);
+    userService
+      .getUserStatistic()
+      .then((res) => {
+        if (res.status === 200) {
+          setDataCharts(res.data);
+        }
+      })
+      .catch((err) => console.error("somsing wrong", err));
   }, []);
 
   return (
