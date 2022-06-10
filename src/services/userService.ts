@@ -11,46 +11,44 @@ class UserService {
   API_USER_CHECK_SAVE = API + '/checks/me/save'
 
   async getUserProfile(userid: number) {
-    requestBuilder.makeSetDefaults()
-
-  await axios.get(this.API_USER_PROFILE+
-      `${userid}`).then((res)=>{return res}).catch((error)=>{
-        console.error(error)
-      })
+    return await requestBuilder.MakeGetRequest(this.API_USER_PROFILE+
+      userid)
   }
+
   async postUserProfileUpdate(Data:object) {
-    requestBuilder.makeSetDefaults()
-
-    let res
-    res = await axios.post(`${this.API_USER_PROFILE_UPDATE}`,Data).then((res)=>{
-      console.log(res)
-      return res
-    }).catch((err)=>{
-      console.error(err)
-    })
-    return res
+    return await requestBuilder.MakePostRequest(this.API_USER_PROFILE_UPDATE,Data)
   }
+
   async getUserStatistic() {
-    requestBuilder.makeSetDefaults()
-     await axios.get(`${this.API_USER_STATISTIC}`).then((res)=>{return res}).catch((error)=>{
-      console.error(error)
-    })
+    return await requestBuilder.MakeGetRequest(`${this.API_USER_STATISTIC}`)
+    // requestBuilder.makeSetDefaults()
+    // axios.defaults.headers.common['accept'] = 'application/json'
+    //  return await axios.get(`${this.API_USER_STATISTIC}`).then((res)=>{return res}).catch((error)=>{
+    //   console.error(error)
+    // })
+
+  //   console.log("getUserStatistic")
+  //    return await axios.get(`${this.API_USER_STATISTIC}`, {
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=utf-8'
+  //     }
+  // }).then((res)=>{return res}).catch((error)=>{
+  //     console.error(error)
+  //   })
+
   }
   async getUserChecks() {
-    requestBuilder.makeSetDefaults()
 
-    await axios.get(`${this.API_USER_CHECKS}`).then((res)=>{return res}).catch((error)=>{
-      console.error(error)
-    })
+    return await requestBuilder.MakeGetRequest(this.API_USER_CHECKS)
+
   }
   async postUserCheckCreate(Data:object) {
-    requestBuilder.makeSetDefaults()
 
- await axios.post(`${this.API_USER_CHECK_SAVE}`,Data).then((res)=>{return res}).catch((error)=>{
-      console.error(error)
-    })
+
+    return await requestBuilder.MakePostRequest(this.API_USER_CHECK_SAVE,Data)
+
   }
 }
 const userService = new UserService() 
 
-export default userService 
+export default userService;

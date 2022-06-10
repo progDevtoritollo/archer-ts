@@ -7,10 +7,7 @@ class RegisterService {
   API_ENDPOINT = API + "/auth/signup";
 
   async Register(registerData: object) {
-    requestBuilder.makeSetDefaults()
-
-    let res = await axios.post(`${this.API_ENDPOINT}`, registerData)
-    return res
+    return await requestBuilder.MakePostRequest(this.API_ENDPOINT, registerData)
   }
 }
 const registerService = new RegisterService()

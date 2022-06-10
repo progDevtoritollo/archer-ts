@@ -7,9 +7,7 @@ class LoginService {
   API_ENDPOINT = API +'/auth/login'
 
   async Login(loginData: object) {
-    requestBuilder.makeSetDefaults()
-    let res = await axios.post(`${this.API_ENDPOINT}`, loginData)
-  return res
+  return await requestBuilder.MakePostRequest(this.API_ENDPOINT, loginData)
   }
 }
 const loginService = new LoginService()
