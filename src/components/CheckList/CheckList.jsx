@@ -5,56 +5,23 @@ import { setOneCheck } from "./../../redux/actions/club";
 import { Card, Avatar } from "antd";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
 const { Meta } = Card;
 
-const CheckList = () => {
+const CheckList = ({ checks }) => {
+  console.log(checks);
   const dispath = useDispatch();
-  const handleCheckClick = (checkid) => {
-    let res = clubService.getClubCheck(checkid);
-    dispath(setOneCheck(res.data));
+  const handleCheckClick = (id) => {
+    clubService
+      .getClubCheck(id)
+      .then((res) => {
+        console.log("check by id", res);
+        dispath(setOneCheck(res.data));
+      })
+      .catch((err) => {
+        console.error("something wrong ", err);
+      });
   };
-  const checks = [
-    {
-      name: "Игорь",
-      surname: "Марусич",
-      total: 278,
-      date: "2001/05/24",
-      distance: 18,
-      id: 54656,
-    },
-    {
-      name: "Игорь",
-      surname: "Марусич",
-      total: 278,
-      date: "2001/05/24",
-      distance: 18,
-      id: 767,
-    },
-    {
-      name: "Игорь",
-      surname: "Марусич",
-      total: 278,
-      date: "2001/05/24",
-      distance: 18,
-      id: 8989,
-    },
-    {
-      name: "Игорь",
-      surname: "Марусич",
-      total: 278,
-      date: "2001/05/24",
-      distance: 18,
-      id: 678,
-    },
-    {
-      name: "Игорь",
-      surname: "Марусич",
-      total: 278,
-      date: "2001/05/24",
-      distance: 18,
-      id: 345,
-    },
-  ];
 
   return (
     <div className="checks-list">
@@ -68,8 +35,8 @@ const CheckList = () => {
           >
             <Meta
               // avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Конторльная:  ${check.name} ${check.surname}`}
-              description={`total:   ${check.total}  Дистанция: ${check.distance}   Дата: ${check.date}`}
+              title={`Конторльная:  ${check.user.name} ${check.user.surname}`}
+              description={`total:   ${check.total}  Дистанция: ${check.distance}   Дата: ${check.createDtm}`}
             />
           </Card>
         </Link>

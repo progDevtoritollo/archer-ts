@@ -7,7 +7,7 @@ class UserService {
   API_USER_PROFILE = API + '/user/profile/'
   API_USER_PROFILE_UPDATE = API + '/user/me/update'
   API_USER_STATISTIC = API + '/checks/me/statistics-1'
-  API_USER_CHECKS = API + '/user/checks'
+  API_USER_CHECKS = API + '/checks/me'
   API_USER_CHECK_SAVE = API + '/checks/me/save'
 
   async getUserProfile(userid: number) {
