@@ -1,10 +1,11 @@
 import { Form, Select, Switch, Button, Radio, Input } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./ClubSettings.scss";
 import { setCoach } from "./../../redux/actions/user";
 import clubService from "../../services/clubService";
+import club from "../../redux/reducers/club";
 
 const ClubSettings = () => {
   const [clubName, setСlubName] = useState("");
@@ -12,12 +13,16 @@ const ClubSettings = () => {
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
   const [building, setBuilding] = useState("");
+
+  // const [cityArray, setCityArray] = useState(["Odessa", "Lviv", "Kiev"]);
+  const [clubArray, setClubArray] = useState([]);
+  const [clubId, setClubId] = useState(Number);
+
+  // const [clubArray, setClubArray] = useState(["ДЮШ40", "Olimpic"]);
+
   const { isCoach } = useSelector(({ user }) => user);
   // const { clubName } = useSelector(({ club }) => club);
   const dispatch = useDispatch();
-  const clubs = ["ДЮШ40", "Olimpic"];
-  const cites = ["Odessa", "Lviv"];
-  const trainers = ["Валерия Владимировна", "Демо"];
 
   const [pageSwitch, setPageSwitch] = useState(true);
 
@@ -25,8 +30,14 @@ const ClubSettings = () => {
     dispatch(setCoach(checked));
     console.log(checked);
   };
-  const handleAddSubmit = (data) => {
+
+  const handleClubSet = (clubId) => {
+    setClubId(clubId);
+  };
+  const handleAddSubmit = () => {
+    let data = { clubId };
     console.log("send data Club Settings", data);
+    clubService.postClubJoin(data);
   };
 
   const handleCreateSubmit = () => {
@@ -38,8 +49,30 @@ const ClubSettings = () => {
       building,
     };
     console.log("send data Club Create", data);
-    clubService.createClubs(data);
+    clubService
+      .createClubs(data)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("crate club response ", res);
+          dispatch(setCoach(true));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
+
+  useEffect(() => {
+    clubService
+      .getAllClubs()
+      .then((res) => {
+        console.log(res.data);
+        setClubArray(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div className="club-settings">
@@ -69,33 +102,25 @@ const ClubSettings = () => {
             <Form.Item label="Тренер ">
               <Switch default={isCoach} onChange={handleSetCoach} />
             </Form.Item>
-            <Form.Item label="Город ">
+            {/* <Form.Item label="Город ">
               <Select>
-                {cites.map((item, id) => (
+                {cityArray.map((item, id) => (
                   <Select.Option key={id} value={item}>
                     {item}
                   </Select.Option>
                 ))}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item label="Клуб ">
-              <Select>
-                {clubs.map((item, id) => (
-                  <Select.Option key={id} value={item}>
-                    {item}
+              <Select onChange={handleClubSet}>
+                {clubArray.map((club) => (
+                  <Select.Option key={club.id} value={club.id}>
+                    {club.name}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Тренер ">
-              <Select>
-                {trainers.map((item, id) => (
-                  <Select.Option key={id} value={item}>
-                    {item}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
+
             <Form.Item>
               <Button type="primary" htmlType="submit">
                 Войти в клуб
