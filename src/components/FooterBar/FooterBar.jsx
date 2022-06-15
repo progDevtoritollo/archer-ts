@@ -168,28 +168,28 @@ const FooterBar: React.FC = () => {
         >
           <TabBar.Item
             className="footer-item"
-            key={"/club/settings"}
+            key={"/coach/settings"}
             icon={<SettingOutlined />}
             title={"Settings"}
           />
 
           <TabBar.Item
             className="footer-item"
-            key={"/club/events"}
+            key={"/coach/events"}
             icon={<FireOutlined />}
             title={"Events"}
             badge={1}
           />
           <TabBar.Item
             className="footer-item"
-            key={"/club/checks"}
+            key={"/coach/newcomers"}
             icon={<BookOutlined />}
-            title={"Checks"}
+            title={"New archers"}
             badge={0}
           />
           <TabBar.Item
             className="footer-item"
-            key={"/club/members"}
+            key={"/coach/members"}
             icon={<MenuOutlined />}
             title={"Member"}
           />

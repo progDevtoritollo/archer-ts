@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
+import CoachNewarchers from "../CoachNewarchers/CoachNewarchers";
 
 import {
   UserNotification,
@@ -26,7 +27,7 @@ const Home = () => {
           <Route exact path="/user/notification" component={UserNotification} />
           <Route exact path="/user/statistic" component={UserStatistic} />
           <Route exact path="/user/checks" component={UserChecks} />
-
+          <Route exact path="/coach/newcomers" component={CoachNewarchers} />
           <Route exact path="/club/statistic" component={ClubStatistic} />
           <Route exact path="/club/activity" component={ClubActivity} />
           <Route exact path="/club/events" component={ClubEvents} />

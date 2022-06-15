@@ -7,3 +7,4 @@ export { default as PolarChart } from "./PolarChart/PolarChart";
 export { default as ItemCheck } from "./ItemCheck/ItemCheck";
 export { default as ItemUser } from "./ItemUser/ItemUser";
 export { default as CheckList } from "./CheckList/CheckList";
+export { default as NewarchersList } from "./NewarchersList/NewarchersList";
