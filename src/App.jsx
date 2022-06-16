@@ -1,10 +1,31 @@
 import { Route, Redirect, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useHistory, useLocation, Link } from "react-router-dom";
 
 import { Auth, Home } from "./pages";
-
+import userService from "./services/userService";
+import { setCoach } from "./redux/actions/user";
 function App() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { isAuth } = useSelector(({ user }) => user);
+  useEffect(() => {
+    userService
+      .getIsAuth()
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(setCoach(true));
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          history.push("/signin");
+          dispatch(setCoach(false));
+        }
+      });
+  }, [Auth]);
 
   // return (
   //   <div className="wrapper">

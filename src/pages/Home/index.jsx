@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
+import userService from "../../services/userService";
 import CoachNewarchers from "../CoachNewarchers/CoachNewarchers";
+import {
+  setSurname,
+  setName,
+  setCoach,
+  setRank,
+} from "./../../redux/actions/user";
 
 import {
   UserNotification,
@@ -19,6 +27,19 @@ import {
 import "./Home.scss";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    userService.getUserInfo().then((res) => {
+      // console.log(res.data);
+
+      dispatch(setRank(res.data.user.rank));
+      dispatch(setSurname(res.data.user.surname));
+      dispatch(setName(res.data.user.name));
+      dispatch(setCoach(res.data.isTrainer));
+    });
+    // занаесение данных о пользователе
+  }, []);
+
   return (
     <>
       <div className="home">
