@@ -30,11 +30,9 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     userService.getUserInfo().then((res) => {
-      // console.log(res.data);
-
-      dispatch(setRank(res.data.user.rank));
-      dispatch(setSurname(res.data.user.surname));
-      dispatch(setName(res.data.user.name));
+      dispatch(setRank(res.data.rank));
+      dispatch(setSurname(res.data.surname));
+      dispatch(setName(res.data.name));
       dispatch(setCoach(res.data.isTrainer));
     });
     // занаесение данных о пользователе

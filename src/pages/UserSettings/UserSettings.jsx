@@ -20,6 +20,8 @@ const dateFormat = "YYYY-MM-DD";
 const UserSettings = () => {
   const { name, surname, birthday, rank } = useSelector(({ user }) => user);
 
+  console.log(name, surname, birthday, rank)
+
   const dispatch = useDispatch();
 
   const handleSelectProfileLevel = (level) => {
