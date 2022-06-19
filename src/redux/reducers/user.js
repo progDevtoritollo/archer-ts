@@ -3,7 +3,7 @@ const initialState = {
   surname: "",
   rank: undefined,
   birthday: "2000-01-01",
-  isAuth: true,
+  isAuth: false,
   isCoach: false,
   checks: [],
   isChecksLoaded: false,
