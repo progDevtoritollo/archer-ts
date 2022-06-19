@@ -5,6 +5,7 @@ import Bullet from "../../assets/img/bullet.png";
 import BigTarget from "../../containers/BigTarget";
 import "./TrainingEvent.scss";
 import userService from "../../services/userService";
+import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
 const width = 15;
@@ -40,7 +41,8 @@ const columns = [
   },
 ];
 
-const TrainingEvent = () => {
+function TrainingEvent(){
+  const history = useHistory();
   const [distance, setDistance] = useState(18);
   var check = {
     series: [],
@@ -48,7 +50,12 @@ const TrainingEvent = () => {
   };
   async function postCheck(CheckData) {
     console.log("Received values of KR: ", CheckData);
-    let res = await userService.postUserCheckCreate(CheckData);
+    let res = await userService.postUserCheckCreate(CheckData)
+    .then(res=> {
+      if( res.status==200){
+        history.push("/")
+      }
+    })
     console.log(res);
   }
 
@@ -116,7 +123,7 @@ const TrainingEvent = () => {
   // const getTable = () => [...series, currentSeries];
   const getTable = () => [currentSeries];
 
-  const handleBTNClick = () => {
+  function handleBTNClick () {
     let totalScore = 0;
     let seriesNumber = 0;
 

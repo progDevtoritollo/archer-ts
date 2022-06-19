@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Router, Switch, useHistory } from "react-router-dom";
 
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
 import userService from "../../services/userService";
+import requestBuilder from "../../utils/requestBuilder";
 import CoachNewarchers from "../CoachNewarchers/CoachNewarchers";
 import {
   setSurname,
   setName,
   setCoach,
   setRank,
+  setClub
 } from "./../../redux/actions/user";
 
 import {
@@ -30,10 +32,13 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     userService.getUserInfo().then((res) => {
-      dispatch(setRank(res.data.rank));
-      dispatch(setSurname(res.data.surname));
-      dispatch(setName(res.data.name));
-      dispatch(setCoach(res.data.isTrainer));
+      console.log(res.data);
+
+      dispatch(setRank(res.data.user.rank));
+      dispatch(setSurname(res.data.user.surname));
+      dispatch(setName(res.data.user.name));
+      dispatch(setCoach(res.data.member.isTrainer));
+      dispatch(setClub(res.data.club));
     });
     // занаесение данных о пользователе
   }, []);
@@ -43,6 +48,7 @@ const Home = () => {
       <div className="home">
         <Switch>
           <Route exact path="/user/settings" component={UserSettings} />
+          <Route exact path="/" component={UserStatistic} />
           <Route exact path="/user/notification" component={UserNotification} />
           <Route exact path="/user/statistic" component={UserStatistic} />
           <Route exact path="/user/checks" component={UserChecks} />

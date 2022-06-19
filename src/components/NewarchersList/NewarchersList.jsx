@@ -26,7 +26,7 @@ const NewarchersList = () => {
 
   return (
     <div className="">
-      <h1>NewarchersList</h1>
+      {/* <h1>NewarchersList</h1> */}
       {!newComersArray ? (
         <>
           {newComersArray.map((item, id) => (
@@ -52,7 +52,7 @@ const NewarchersList = () => {
           ))}
         </>
       ) : (
-        <h1>Нет новых учасников</h1>
+        <h2>Нет новых учасников</h2>
       )}
     </div>
   );

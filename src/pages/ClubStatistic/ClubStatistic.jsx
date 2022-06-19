@@ -68,7 +68,7 @@ const ClubStatistic = () => {
 
       {pageSwitch ? (
         <>
-          <h1>Statistic</h1>
+          {/* <h1>Statistic</h1>
 
           <span>Графики и все таке</span>
 
@@ -76,21 +76,21 @@ const ClubStatistic = () => {
             рейтинг 10 стрелка в каждой категории (по дэфолту выбрана категория
             которая у пользователя - кадет например), в виде графиков топ 3
             лучника,
-          </div>
+          </div> */}
         </>
       ) : (
         <div>
-          <h1>Members</h1>
-          <span>Список всех участников </span>
-          <span>
+          {/* <h1>Members</h1> */}
+          {/* <span>Список всех участников </span> */}
+          {/* <span>
             Спимсок участников клуба - с возможность: аватар - имя - фамилия,
             онлайн профиля (значит на тренировке ), просмотра их профиля при
             нажатии, возможностсь вызова на дуэль, статистика кратакая (роост
             или падение в соответствии с прошлой контрольной или тренировкой )
-          </span>
+          </span> */}
           {userArray ? (
             <div className="members-list">
-              <h1 className="members-list__title">ClubMembers</h1>
+              <h1 className="members-list__title">Club Members</h1>
               Список пользователей клуба
               <div className="members-list__container">
                 {userArray.map((item) => (

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation, Link } from "react-router-dom";
 
-import { Auth, Home } from "./pages";
+import { Auth, Home,UserStatistic } from "./pages";
 import userService from "./services/userService";
 import { setCoach } from "./redux/actions/user";
 function App() {

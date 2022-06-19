@@ -20,8 +20,6 @@ const dateFormat = "YYYY-MM-DD";
 const UserSettings = () => {
   const { name, surname, birthday, rank } = useSelector(({ user }) => user);
 
-  console.log(name, surname, birthday, rank)
-
   const dispatch = useDispatch();
 
   const handleSelectProfileLevel = (level) => {
@@ -54,7 +52,7 @@ const UserSettings = () => {
   return (
     <div className="user-settings">
       <div className="header">
-        <h1>UserSettings</h1>
+        <h1>User Settings</h1>
         <Link
           className="link"
           to={"/signin"}
@@ -66,10 +64,10 @@ const UserSettings = () => {
           <LogoutOutlined className="user-settings__log-out" />
         </Link>
       </div>
-      <span>
+      {/* <span>
         Фамилия дата рождения трернер размер мишени(в зависимости от возраста по
         автомату) аватарка на сколько заполнен профиль
-      </span>
+      </span> */}
       <Form
         labelCol={{
           span: 4,

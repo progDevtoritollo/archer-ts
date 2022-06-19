@@ -67,14 +67,14 @@ const FooterBar: React.FC = () => {
         <FireOutlined />
         <h6>Target</h6>
       </Link>
-      <div className="footer-item">
+      {/* <div className="footer-item">
         <MenuOutlined
           onClick={() => {
             setVisibleMore(true);
           }}
         />
         <h6>More</h6>
-      </div>
+      </div> */}
 
       <Popup
         visible={visibleAvatar}
@@ -133,12 +133,12 @@ const FooterBar: React.FC = () => {
             icon={<LineChartOutlined />}
             title={"Statistic"}
           />
-          <TabBar.Item
+          {/* <TabBar.Item
             className="footer-item"
             key={"/club/activity"}
             icon={<DatabaseOutlined />}
             title={"activity"}
-          />
+          /> */}
           <TabBar.Item
             className="footer-item"
             key={"/club/events"}
@@ -150,8 +150,8 @@ const FooterBar: React.FC = () => {
           <TabBar.Item
             className="footer-item"
             key={"/club/settings"}
-            icon={<SettingOutlined />}
-            title={"Settings"}
+            icon={<MenuOutlined />}
+            title={"Membership"}
           />
         </TabBar>
       </Popup>
@@ -184,15 +184,15 @@ const FooterBar: React.FC = () => {
             className="footer-item"
             key={"/coach/newcomers"}
             icon={<BookOutlined />}
-            title={"New archers"}
+            title={"New members"}
             badge={0}
           />
-          <TabBar.Item
+          {/* <TabBar.Item
             className="footer-item"
             key={"/coach/members"}
             icon={<MenuOutlined />}
             title={"Member"}
-          />
+          /> */}
         </TabBar>
       </Popup>
       <Popup

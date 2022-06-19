@@ -16,14 +16,13 @@ const UserChecks = () => {
         setChecks(res.data);
       })
       .catch((err) => {
-        console.error("something wrong ", err);
+        console.error("something went wrong ", err);
       });
   }, []);
 
   return (
     <div>
-      <h1>UserChecks</h1>
-      Список контрольных пользователя
+      <h1>User Checks</h1>
       <div className="check-list">
         <CheckList checks={checks} />
       </div>

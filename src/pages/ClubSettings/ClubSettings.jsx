@@ -8,7 +8,7 @@ import clubService from "../../services/clubService";
 import club from "../../redux/reducers/club";
 
 const ClubSettings = () => {
-  const [clubName, setСlubName] = useState("");
+  const [clubName1, setСlubName] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
@@ -21,7 +21,9 @@ const ClubSettings = () => {
   // const [clubArray, setClubArray] = useState(["ДЮШ40", "Olimpic"]);
 
   const { isCoach } = useSelector(({ user }) => user);
-  // const { clubName } = useSelector(({ club }) => club);
+  const { clubName } = useSelector(({ club }) => club);
+  const { club } = useSelector(({ club }) => club);
+  console.log("club ", clubName)
   const dispatch = useDispatch();
 
   const [pageSwitch, setPageSwitch] = useState(true);
@@ -42,7 +44,7 @@ const ClubSettings = () => {
 
   const handleCreateSubmit = () => {
     let data = {
-      clubName,
+      clubName:clubName1,
       country,
       city,
       street,
@@ -74,124 +76,133 @@ const ClubSettings = () => {
       });
   }, []);
 
-  return (
-    <div className="club-settings">
-      <h1>ClubSettings {clubName}</h1>
-      <Radio.Group
-        value={pageSwitch}
-        onChange={(e) => {
-          setPageSwitch(e.target.value);
-        }}
-      >
-        <Radio.Button value={true}>Добавиться</Radio.Button>
-        <Radio.Button value={false}>Создать</Radio.Button>
-      </Radio.Group>
+  return (<>
+    {
+      clubName?(
+        <div className="club-settings">
+        <h1>ClubSettings {clubName}</h1>
+        <Radio.Group
+          value={pageSwitch}
+          onChange={(e) => {
+            setPageSwitch(e.target.value);
+          }}
+        >
+          <Radio.Button value={true}>Добавиться</Radio.Button>
+          <Radio.Button value={false}>Создать</Radio.Button>
+        </Radio.Group>
+  
+        {pageSwitch ? (
+          <>
+            <Form
+              labelCol={{
+                span: 4,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              layout="horizontal"
+              onFinish={handleAddSubmit}
+            >
+              {/* <Form.Item label="Тренер ">
+                <Switch default={isCoach} onChange={handleSetCoach} />
+              </Form.Item> */}
+              {/* <Form.Item label="Город ">
+                <Select>
+                  {cityArray.map((item, id) => (
+                    <Select.Option key={id} value={item}>
+                      {item}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item> */}
+              <Form.Item label="Клуб ">
+                <Select onChange={handleClubSet}>
+                  {clubArray.map((club) => (
+                    <Select.Option key={club.id} value={club.id}>
+                      {club.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+  
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Войти в клуб
+                </Button>
+              </Form.Item>
+            </Form>
+            <span>Инфомация о клубе</span>
+          </>
+        ) : (
+          <>
+            <h3>Create Club </h3>
+            <Form
+              labelCol={{
+                span: 4,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              layout="horizontal"
+              onFinish={handleCreateSubmit}
+            >
+              <Form.Item label="Название Клуба ">
+                <Input
+                  value={clubName1}
+                  onChange={(e) => {
+                    setСlubName(e.target.value);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item label="Страна ">
+                <Input
+                  value={country}
+                  onChange={(e) => {
+                    setCountry(e.target.value);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item label="Город ">
+                <Input
+                  value={city}
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item label="Улица ">
+                <Input
+                  value={street}
+                  onChange={(e) => {
+                    setStreet(e.target.value);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item label="здание ">
+                <Input
+                  value={building}
+                  onChange={(e) => {
+                    setBuilding(e.target.value);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Создать
+                </Button>
+              </Form.Item>
+            </Form>
+          </>
+        )}
+      </div>
+        
+        
+      ):(
+<div>no clubName</div>
+      )
+    }
 
-      {pageSwitch ? (
-        <>
-          <Form
-            labelCol={{
-              span: 4,
-            }}
-            wrapperCol={{
-              span: 14,
-            }}
-            layout="horizontal"
-            onFinish={handleAddSubmit}
-          >
-            <Form.Item label="Тренер ">
-              <Switch default={isCoach} onChange={handleSetCoach} />
-            </Form.Item>
-            {/* <Form.Item label="Город ">
-              <Select>
-                {cityArray.map((item, id) => (
-                  <Select.Option key={id} value={item}>
-                    {item}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-            <Form.Item label="Клуб ">
-              <Select onChange={handleClubSet}>
-                {clubArray.map((club) => (
-                  <Select.Option key={club.id} value={club.id}>
-                    {club.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Войти в клуб
-              </Button>
-            </Form.Item>
-          </Form>
-          <span>Инфомация о клубе</span>
-        </>
-      ) : (
-        <>
-          <h3>Create Club </h3>
-          <Form
-            labelCol={{
-              span: 4,
-            }}
-            wrapperCol={{
-              span: 14,
-            }}
-            layout="horizontal"
-            onFinish={handleCreateSubmit}
-          >
-            <Form.Item label="Название Клуба ">
-              <Input
-                value={clubName}
-                onChange={(e) => {
-                  setСlubName(e.target.value);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Страна ">
-              <Input
-                value={country}
-                onChange={(e) => {
-                  setCountry(e.target.value);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Город ">
-              <Input
-                value={city}
-                onChange={(e) => {
-                  setCity(e.target.value);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Улица ">
-              <Input
-                value={street}
-                onChange={(e) => {
-                  setStreet(e.target.value);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="здание ">
-              <Input
-                value={building}
-                onChange={(e) => {
-                  setBuilding(e.target.value);
-                }}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Создать
-              </Button>
-            </Form.Item>
-          </Form>
-        </>
-      )}
-    </div>
-  );
+  </>);
 };
 
 export default ClubSettings;

@@ -3,7 +3,7 @@ const initialState = {
   surname: "",
   rank: undefined,
   birthday: "2000-01-01",
-  isAuth: false,
+  isAuth: localStorage.getItem("TOKEN"),
   isCoach: false,
   checks: [],
   isChecksLoaded: false,
