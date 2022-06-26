@@ -76,9 +76,8 @@ const ClubSettings = () => {
       });
   }, []);
 
-  return (<>
-    {
-      clubName?(
+  return (
+
         <div className="club-settings">
         <h1>ClubSettings {clubName}</h1>
         <Radio.Group
@@ -197,12 +196,8 @@ const ClubSettings = () => {
       </div>
         
         
-      ):(
-<div>no clubName</div>
-      )
-    }
 
-  </>);
+ );
 };
 
 export default ClubSettings;
