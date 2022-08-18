@@ -1,2 +1,16 @@
-.club-activity {
+.card-check {
+  margin-top: 5px;
+  color: black;
+  &__name {
+    color: black;
+  }
+  &__total {
+    color: black;
+  }
+  &__distance {
+    color: black;
+  }
+  &__createData {
+    color: black;
+  }
 }

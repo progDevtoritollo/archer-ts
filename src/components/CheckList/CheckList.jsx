@@ -1,12 +1,11 @@
 import "./CheckList.scss";
-import clubService from "./../../services/clubService";
-import { setOneCheck } from "./../../redux/actions/club";
+import clubService from "../../services/clubService";
+import { setOneCheck } from "../../redux/actions/club";
 
-import { Card, Avatar } from "antd";
+import { Card } from "./../index";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
-const { Meta } = Card;
 
 const CheckList = ({ checks }) => {
   console.log(checks);
@@ -24,22 +23,24 @@ const CheckList = ({ checks }) => {
   };
 
   return (
-    <div className="checks-list">
+    <div className="check-block-wrapper">
       {checks.map((check, id) => (
-        <Link to={`/check/${check.id}`} key={check.id + "link"}>
-          <Card
-            key={id}
-            style={{ width: "300", marginTop: 16 }}
-            loading={false}
-            onClick={() => handleCheckClick(check.id)}
-          >
-            <Meta
-              // avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Конторльная:  ${check.user.name} ${check.user.surname}`}
-              description={`total:   ${check.total}  Дистанция: ${check.distance}   Дата: ${check.createDtm}`}
-            />
-          </Card>
-        </Link>
+        <Card
+          onClick={() => handleCheckClick(check.id)}
+          key={id}
+          className="card-check"
+        >
+          <Link to={`/check/${check.id}`} key={check.id + "link"}>
+            <div className="card-check__name">
+              {`KR -  ${check.user.name} ${check.user.surname}`}
+            </div>
+            <div className="card-check__total">{`Счет: ${check.total}`}</div>
+            <div className="card-check__distance">{`Дистанция: ${check.distance}  `}</div>
+            <div className="card-check__createData">{`Дата: ${moment(
+              check.createdDate
+            ).fromNow()}`}</div>
+          </Link>
+        </Card>
       ))}
     </div>
   );

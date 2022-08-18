@@ -1,15 +1,33 @@
 import "./ItemCheck.scss";
 import { parsing } from "./../../utils/parsing";
+import { Card } from "./../../components/index";
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Skeleton, Card, Switch, Avatar, Table } from "antd";
+import { Table } from "antd";
 import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-const { Meta } = Card;
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+import moment from "moment";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const width = 15;
 
@@ -46,62 +64,64 @@ const columns = [
 
 const ItemCheck = () => {
   const { check } = useSelector(({ club }) => club);
-  const [loading, setLoading] = useState(true);
-  const [total, setTotal] = useState(null);
-  const [distance, setDistance] = useState(null);
   const [series, setSeries] = useState();
+  const [scores, setScores] = useState();
 
-  useEffect(() => {
-    setTotal(check.total);
-    setDistance(check.distance);
-    console.log(distance);
-    let array = parsing(check);
-    console.log(array);
-    setSeries(array);
-    console.log("State series: ", series);
-
-    // const array =
-    // console.log("array in Effect", array);
-    // return array;
-  }, []);
-
-  const onChange = (checked) => {
-    setLoading(!checked);
+  const chart = {
+    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    datasets: [
+      {
+        label: "По сериям",
+        data: scores,
+        backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+        borderWidth: 3,
+      },
+    ],
   };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: false,
+        text: "По сериям",
+      },
+    },
+  };
+  let array = parsing(check);
+  useEffect(() => {
+    console.log("check", check);
+
+    console.log(array);
+    setSeries(array.seriesArray);
+    setScores(array.seriesScore);
+    console.log("State scores: ", scores);
+    console.log("State series: ", series);
+  }, []);
 
   var getTable = () => series;
 
   return (
     <>
       <h1>ItemCheck</h1>
-      <Switch checked={!loading} onChange={onChange} />
-
-      <div className="check">
-        <div className="check__total"></div>
-        <div className="check__user-name"></div>
-        <div className="chack__date"></div>
-        <div className="check__distance"></div>
-      </div>
-      <Card
-        style={{
-          width: "100%",
-          marginTop: 16,
-        }}
-        actions={[
-          <SettingOutlined key="setting" />,
-          <EditOutlined key="edit" />,
-          <EllipsisOutlined key="ellipsis" />,
-        ]}
-      >
-        <Skeleton loading={loading} avatar active>
-          <Meta
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-            title="Card title"
-            description="This is the description"
-          />
-        </Skeleton>
+      <Card className="card-block">
+        {/* <div className="card-block__name">
+          {`KR -  ${check.user.name} ${check.user.surname}`}
+        </div> */}
+        <div className="card-block__total">{`Счет: ${check.total}`}</div>
+        <div className="card-block__distance">{`Дистанция: ${check.distance}  `}</div>
+        <div className="card-block__createData">{`Дата: ${moment(
+          check.createdDate
+        ).fromNow()} `}</div>
       </Card>
-      <br />
+      <hr />
+      <div className="check-line">
+        <Line options={options} data={chart} />
+      </div>
+      <hr />
       <div className="table">
         <Table
           columns={columns}
