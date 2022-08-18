@@ -2,6 +2,7 @@ import deepForEach from "deep-for-each";
 
 export const parsing = (check) => {
   var seriesArray = [];
+  var seriesScore = [];
   var counter = 0;
   var seriesNumber, firstShot, secondShot, thirdShot;
 
@@ -9,7 +10,6 @@ export const parsing = (check) => {
     switch (key) {
       case "seriesNumber":
         seriesNumber = value;
-        // console.log("seriesNumber", seriesNumber);
         break;
       case "score":
         if (counter === 0) {
@@ -19,6 +19,7 @@ export const parsing = (check) => {
         } else if (counter === 2) {
           thirdShot = value;
           counter = 0;
+          seriesScore.push(firstShot + secondShot + thirdShot);
           seriesArray.push({
             key: seriesNumber,
             number: seriesNumber,
@@ -35,6 +36,8 @@ export const parsing = (check) => {
     }
   });
 
-  console.log("Series in end", seriesArray);
-  return seriesArray;
+  console.log("seriesArray", seriesArray);
+  console.log("seriesScore", seriesScore);
+
+  return { seriesArray, seriesScore };
 };

@@ -1,10 +1,25 @@
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-const BarChart = (propsData) => {
+const PieChart = (propsData) => {
   const options = {
     responsive: true,
     plugins: {
@@ -13,15 +28,16 @@ const BarChart = (propsData) => {
       },
       title: {
         display: true,
-        text: "Последние 10 контрольных (поменять на график BaChart)",
+        text: "Последние 10 контрольных ",
       },
     },
   };
+
   var data = {
     labels: ["1 ", "2", "3", "4", "5", "6", "7", "8", "9", "10", "x"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "10 новых контроллльных",
         data: propsData.data,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -44,9 +60,9 @@ const BarChart = (propsData) => {
     ],
   };
 
-  return <Pie options={options} data={data} />;
+  return <Bar options={options} data={data} />;
 
   /* Кол-во попаданий в каждый участок мишени  */
 };
 
-export default BarChart;
+export default PieChart;

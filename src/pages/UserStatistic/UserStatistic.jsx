@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { LineChart, PieChart } from "../../components/index.js";
+import { LineChart, PieChart, BarChart } from "../../components/index.js";
 import userService from "../../services/userService";
 
 const UserStatistic = () => {
@@ -25,9 +25,14 @@ const UserStatistic = () => {
         данный момент в категории пользователя, Повысилачсь ли активность и на
         сколько, зайти в графики и глянуть какие можно еще придумать
       </span> */}
+      <hr />
       <LineChart data={dataCharts.avgTotalByMonth} />
-      <br />
+      <hr />
+      <BarChart data={dataCharts.last10ChecksShotsRange} />
+      <hr />
       <PieChart data={dataCharts.last10ChecksShotsRange} />
+      <hr />
+
       {/* <PolarChart /> */}
     </div>
   );

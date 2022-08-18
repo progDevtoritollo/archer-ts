@@ -25,10 +25,10 @@ const LineChart = (propsData) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
       },
       title: {
-        display: true,
+        display: false,
         text: "Chart.js Line Chart",
       },
     },
@@ -51,10 +51,10 @@ const LineChart = (propsData) => {
     ],
     datasets: [
       {
-        label: "Mid mounth score",
+        label: "Средняя статистика",
         data: propsData.data,
         backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-        borderWidth: 4,
+        borderWidth: 3,
       },
     ],
   };
