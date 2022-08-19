@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const CheckList = ({ checks }) => {
-  console.log(checks);
   const dispath = useDispatch();
   const handleCheckClick = (id) => {
     clubService
@@ -25,21 +24,19 @@ const CheckList = ({ checks }) => {
   return (
     <div className="check-block-wrapper">
       {checks.map((check, id) => (
-        <Card
-          onClick={() => handleCheckClick(check.id)}
-          key={id}
-          className="card-check"
-        >
-          <Link to={`/check/${check.id}`} key={check.id + "link"}>
-            <div className="card-check__name">
-              {`KR -  ${check.user.name} ${check.user.surname}`}
-            </div>
-            <div className="card-check__total">{`Счет: ${check.total}`}</div>
-            <div className="card-check__distance">{`Дистанция: ${check.distance}  `}</div>
-            <div className="card-check__createData">{`Дата: ${moment(
-              check.createdDate
-            ).fromNow()}`}</div>
-          </Link>
+        <Card key={id} className="card-check">
+          <div onClick={() => handleCheckClick(check.id)}>
+            <Link to={`/check/${check.id}`} key={check.id + "link"}>
+              <div className="card-check__name">
+                {`KR -  ${check.user.name} ${check.user.surname}`}
+              </div>
+              <div className="card-check__total">{`Счет: ${check.total}`}</div>
+              <div className="card-check__distance">{`Дистанция: ${check.distance}  `}</div>
+              <div className="card-check__createData">{`Дата: ${moment(
+                check.createdDate
+              ).fromNow()}`}</div>
+            </Link>
+          </div>
         </Card>
       ))}
     </div>

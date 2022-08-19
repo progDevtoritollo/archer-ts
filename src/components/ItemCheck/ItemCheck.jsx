@@ -108,9 +108,9 @@ const ItemCheck = () => {
     <>
       <h1>ItemCheck</h1>
       <Card className="card-block">
-        {/* <div className="card-block__name">
+        <div className="card-block__name">
           {`KR -  ${check.user.name} ${check.user.surname}`}
-        </div> */}
+        </div>
         <div className="card-block__total">{`Счет: ${check.total}`}</div>
         <div className="card-block__distance">{`Дистанция: ${check.distance}  `}</div>
         <div className="card-block__createData">{`Дата: ${moment(
