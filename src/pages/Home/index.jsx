@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
+import { LoadingSpinner } from "../../modules";
 import userService from "../../services/userService";
 import CoachNewarchers from "../CoachNewarchers/CoachNewarchers";
 import {
@@ -10,6 +11,7 @@ import {
   setName,
   setCoach,
   setRank,
+  setBirthday,
 } from "./../../redux/actions/user";
 
 import {
@@ -36,6 +38,7 @@ const Home = () => {
       dispatch(setSurname(res.data.user.surname));
       dispatch(setName(res.data.user.name));
       dispatch(setCoach(res.data.isTrainer));
+      dispatch(setBirthday(res.data.user.birthday));
     });
     // занаесение данных о пользователе
   }, []);
