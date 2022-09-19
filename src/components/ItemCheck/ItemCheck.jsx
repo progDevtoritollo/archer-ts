@@ -1,6 +1,7 @@
 import "./ItemCheck.scss";
 import { parsing } from "./../../utils/parsing";
 import { Card } from "./../../components/index";
+import clubService from "../../services/clubService";
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -18,6 +19,7 @@ import {
 import { Line } from "react-chartjs-2";
 
 import moment from "moment";
+import { LoadingSpinner } from "../../modules";
 
 ChartJS.register(
   CategoryScale,
@@ -63,7 +65,7 @@ const columns = [
 ];
 
 const ItemCheck = () => {
-  const { check } = useSelector(({ club }) => club);
+  const [currentCheck, setCurrentCheck] = useState({});
   const [series, setSeries] = useState();
   const [scores, setScores] = useState();
 
@@ -91,15 +93,29 @@ const ItemCheck = () => {
       },
     },
   };
-  let array = parsing(check);
-  useEffect(() => {
-    console.log("check", check);
 
-    console.log(array);
-    setSeries(array.seriesArray);
-    setScores(array.seriesScore);
-    console.log("State scores: ", scores);
-    console.log("State series: ", series);
+  const getPathNum = () => {
+    let pathString = window.location.pathname;
+    return pathString.slice(7);
+  };
+
+  const getCheck = () => {
+    clubService
+      .getClubCheck(getPathNum())
+      .then((res) => {
+        setCurrentCheck(res.data);
+        var data = parsing(res.data);
+
+        setSeries(data.seriesArray);
+        setScores(data.seriesScore);
+      })
+      .catch((err) => {
+        console.error("something wrong ", err);
+      });
+  };
+
+  useEffect(() => {
+    getCheck();
   }, []);
 
   var getTable = () => series;
@@ -107,29 +123,37 @@ const ItemCheck = () => {
   return (
     <>
       <h1>ItemCheck</h1>
-      <Card className="card-block">
-        <div className="card-block__name">
-          {`KR -  ${check.user.name} ${check.user.surname}`}
-        </div>
-        <div className="card-block__total">{`Счет: ${check.total}`}</div>
-        <div className="card-block__distance">{`Дистанция: ${check.distance}  `}</div>
-        <div className="card-block__createData">{`Дата: ${moment(
-          check.createdDate
-        ).fromNow()} `}</div>
-      </Card>
-      <hr />
-      <div className="check-line">
-        <Line options={options} data={chart} />
-      </div>
-      <hr />
-      <div className="table">
-        <Table
-          columns={columns}
-          dataSource={getTable()}
-          pagination={false}
-          bordered
-        />
-      </div>
+      {Object.keys(currentCheck).length <= 0 ? (
+        <>
+          <LoadingSpinner />
+        </>
+      ) : (
+        <>
+          <Card className="card-block">
+            <div className="card-block__name ">
+              {`KR -  ${currentCheck.user.name}   ${currentCheck.user.surname}`}
+            </div>
+            <div className="card-block__total">{`Счет:  ${currentCheck.total}`}</div>
+            <div className="card-block__distance">{`Дистанция:  ${currentCheck.distance}  `}</div>
+            <div className="card-block__createData">{`Дата: ${moment(
+              currentCheck.createdDate
+            ).fromNow()} `}</div>
+          </Card>
+          <hr />
+          <div className="check-line">
+            <Line options={options} data={chart} />
+          </div>
+          <hr />
+          <div className="table">
+            <Table
+              columns={columns}
+              dataSource={getTable()}
+              pagination={false}
+              bordered
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

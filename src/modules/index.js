@@ -1,3 +1,4 @@
-export { default as LoginForm } from "./LoginForm";
-// export { default as RegisterForm } from "./RegisterForm";
-export { default as Iam } from "./Iam";
+export { default as LoginForm } from "./LoginForm/LoginForm";
+export { default as RegisterForm } from "./RegisterForm/RegisterForm";
+
+export { default as LoadingSpinner } from "./LoadingSpinner/LoadingSpinner";

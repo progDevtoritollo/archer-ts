@@ -36,8 +36,5 @@ export const parsing = (check) => {
     }
   });
 
-  console.log("seriesArray", seriesArray);
-  console.log("seriesScore", seriesScore);
-
   return { seriesArray, seriesScore };
 };

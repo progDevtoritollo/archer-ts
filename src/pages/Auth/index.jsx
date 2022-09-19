@@ -1,7 +1,7 @@
 import React from "react";
 
-import LoginForm from "../../modules/LoginForm/LoginForm";
-import RegisterForm from "../../modules/RegisterForm/RegisterForm";
+import { LoginForm } from "../../modules";
+import { RegisterForm } from "../../modules";
 
 import { Route } from "react-router-dom";
 
