@@ -2,6 +2,7 @@ import "./NewArchersBlock.scss";
 import clubService from "../../services/clubService";
 import { Card } from "./../index";
 
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { Button } from "antd";
 
@@ -19,8 +20,14 @@ const NewArchersBlock = (newArcher) => {
         <div className="archer-card__email">
           {` Email: ${newArcher.email} `}
         </div>
-        <div className="archer-card__messageData">
+        {/* <div className="archer-card__messageData">
           {`Дата: ${newArcher.createDtm} `}
+        </div> */}
+        <div className="archer-card__messageData">
+          {/* {Дата: ${newArcher.createDtm} } */}
+          {`Дата: ${moment(newArcher.createDtm).format(
+            "MMMM Do YYYY, h:mm:ss a"
+          )} `}
         </div>
         <Button
           type="primary"

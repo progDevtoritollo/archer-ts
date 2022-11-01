@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./ClubSettings.scss";
-import { setCoach } from "./../../redux/actions/user";
+import { SetIsCoach } from "./../../redux/user/slice";
 import clubService from "../../services/clubService";
-import club from "../../redux/reducers/club";
+import club from "../../redux/club/slice";
+import user from "../../redux/user/slice";
 
 const ClubSettings = () => {
   const [clubName, setСlubName] = useState("");
@@ -27,7 +28,7 @@ const ClubSettings = () => {
   const [pageSwitch, setPageSwitch] = useState(true);
 
   const handleSetCoach = (checked) => {
-    dispatch(setCoach(checked));
+    dispatch(SetIsCoach(checked));
     console.log(checked);
   };
 
@@ -54,7 +55,7 @@ const ClubSettings = () => {
       .then((res) => {
         if (res.status === 200) {
           console.log("crate club response ", res);
-          dispatch(setCoach(true));
+          dispatch(SetIsCoach(true));
         }
       })
       .catch((err) => {

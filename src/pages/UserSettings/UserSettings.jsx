@@ -8,34 +8,36 @@ import { setAuth } from "./../../redux/actions/user";
 import userServices from "../../services/userService";
 import "./UserSettings.scss";
 import {
-  setRank,
-  setName,
-  setSurname,
-  setBirthday,
-} from "../../redux/actions/user";
+  setUserName,
+  setUserSurname,
+  setUserBirthday,
+  setUserRank,
+} from "./../../redux/user/slice";
 
 const { TreeNode } = TreeSelect;
 const dateFormat = "YYYY-MM-DD";
 
 const UserSettings = () => {
-  const { name, surname, birthday, rank } = useSelector(({ user }) => user);
+  const { name, surname, birthday, rank } = useSelector(
+    ({ user }) => user.info
+  );
 
   const dispatch = useDispatch();
 
   const handleSelectProfileLevel = (level) => {
-    dispatch(setRank(level));
+    dispatch(setUserRank(level));
   };
 
   const onChangeDate = (date, dateString) => {
-    dispatch(setBirthday(dateString));
+    dispatch(setUserBirthday(dateString));
   };
 
   const handleSetName = (e) => {
-    dispatch(setName(e.target.value));
+    dispatch(setUserName(e.target.value));
   };
 
   const handleSetSurname = (e) => {
-    dispatch(setSurname(e.target.value));
+    dispatch(setUserSurname(e.target.value));
   };
 
   const hadleSubmit = () => {

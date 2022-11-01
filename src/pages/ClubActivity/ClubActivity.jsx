@@ -1,8 +1,10 @@
 import "./ClubActivity.scss";
 import { CheckList } from "./../../components/index";
+import clubService from "../../services/clubService";
+import club from "../../redux/club/slice";
 
 import { useEffect, useState } from "react";
-import clubService from "../../services/clubService";
+import { Redirect, Link } from "react-router-dom";
 
 const ClubActivity = () => {
   const [checks, setChecks] = useState([]);
@@ -19,15 +21,21 @@ const ClubActivity = () => {
       });
   }, []);
   return (
-    <div className="club-activity">
-      <h1>ClubActivity</h1>
-      <span>
-        Список участников всего клуба и их данные последних выстрелов,
-        контролльных, дуэли(стадии: началась и закончилась(с победителем )),
-        сколько прошло времени с последней активности
-      </span>
-      <CheckList checks={checks} />
-    </div>
+    <>
+      {club.info === null ? (
+        <Redirect to="/club/settings" />
+      ) : (
+        <div className="club-activity">
+          <h1>ClubActivity</h1>
+          <span>
+            Список участников всего клуба и их данные последних выстрелов,
+            контролльных, дуэли(стадии: началась и закончилась(с победителем )),
+            сколько прошло времени с последней активности
+          </span>
+          <CheckList checks={checks} />
+        </div>
+      )}
+    </>
   );
 };
 

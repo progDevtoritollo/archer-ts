@@ -4,7 +4,8 @@ import { useEffect } from "react";
 
 import { Auth, Home } from "./pages";
 import userService from "./services/userService";
-import { setAuth } from "./redux/actions/user";
+import { SetIsAuth } from "./redux/user/slice";
+import user from "./redux/user/slice";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,12 +16,12 @@ function App() {
       .getIsAuth()
       .then((res) => {
         if (res.status === 200) {
-          dispatch(setAuth(true));
+          dispatch(SetIsAuth(true));
         }
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          dispatch(setAuth(false));
+          dispatch(SetIsAuth(false));
         }
       });
   }, []);
@@ -30,10 +31,13 @@ function App() {
       <Switch>
         <Route
           exact
-          path={["/signin", "/signup", "/signup/verify"]}
+          path={["/signin", "/signup"]}
           component={() => (isAuth ? <Redirect to="/" /> : <Auth />)}
         />
-        <Route path={["/", "/oauth2/redirect"]} render={() => <Home />} />
+        <Route
+          path={["/", "/oauth2/redirect"]}
+          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
+        />
       </Switch>
     </div>
   );

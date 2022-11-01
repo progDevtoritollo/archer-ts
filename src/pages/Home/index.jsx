@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { FooterBar, ItemCheck, ItemUser } from "../../components";
 import { LoadingSpinner } from "../../modules";
+import { setClub } from "../../redux/club/slice";
 import userService from "../../services/userService";
 import CoachNewarchers from "../CoachNewarchers/CoachNewarchers";
-import {
-  setSurname,
-  setName,
-  setCoach,
-  setRank,
-  setBirthday,
-} from "./../../redux/actions/user";
+
+import { setUser, SetIsCoach } from "./../../redux/user/slice";
 
 import {
   UserNotification,
@@ -29,18 +25,23 @@ import {
 import "./Home.scss";
 
 const Home = () => {
+  // const { user } = useSelector(({ user }) => user);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    userService.getUserInfo().then((res) => {
-      // console.log(res.data);
-
-      dispatch(setRank(res.data.user.rank));
-      dispatch(setSurname(res.data.user.surname));
-      dispatch(setName(res.data.user.name));
-      dispatch(setCoach(res.data.isTrainer));
-      dispatch(setBirthday(res.data.user.birthday));
-    });
-    // занаесение данных о пользователе
+    userService
+      .getUserInfo()
+      .then((res) => {
+        dispatch(setUser(res.data.user));
+        if (res.data.club !== null) {
+          dispatch(setClub(res.data.club));
+          dispatch(SetIsCoach(res.data.member.isTrainer));
+        }
+        console.log("res, data", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

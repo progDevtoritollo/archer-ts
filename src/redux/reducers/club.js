@@ -10,16 +10,16 @@ const initialState = {
 
 const club = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_CLUB_NAME":
-      return {
-        ...state,
-        clubName: action.payload,
-      };
-    case "SET_CLUB_TRAINER":
-      return {
-        ...state,
-        trainer: action.payload,
-      };
+    // case "SET_CLUB_NAME":
+    //   return {
+    //     ...state,
+    //     clubName: action.payload,
+    //   };
+    // case "SET_CLUB_TRAINER":
+    //   return {
+    //     ...state,
+    //     trainer: action.payload,
+    //   };
     case "SET_USERS":
       return {
         ...state,
@@ -31,22 +31,22 @@ const club = (state = initialState, action) => {
         users: action.payload,
         isUsersLoaded: true,
       };
-    case "SET_CLUB_CHECKS":
-      return {
-        ...state,
-        items: action.payload,
-        isChecksLoaded: true,
-      };
-    case "SET_CHECK":
-      return {
-        ...state,
-        check: action.payload,
-      };
-    case "SET_CLUB_CHECKS_LOADED":
-      return {
-        ...state,
-        isChecksLoaded: action.payload,
-      };
+    // case "SET_CLUB_CHECKS":
+    //   return {
+    //     ...state,
+    //     items: action.payload,
+    //     isChecksLoaded: true,
+    //   };
+    // case "SET_CHECK":
+    //   return {
+    //     ...state,
+    //     check: action.payload,
+    //   };
+    // case "SET_CLUB_CHECKS_LOADED":
+    //   return {
+    //     ...state,
+    //     isChecksLoaded: action.payload,
+    //   };
     default:
       return state;
   }
