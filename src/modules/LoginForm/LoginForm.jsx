@@ -12,7 +12,7 @@ import requestBuilder from "./../../utils/requestBuilder";
 import loginService from "./../../services/loginService";
 import { Block } from "./../../components";
 import { GOOGLE_API } from "./../../commons";
-import { setAuth } from "./../../redux/actions/user";
+import { SetIsAuth } from "./../../redux/user/slice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const LoginForm = () => {
     console.log(res);
     if (res.status === 200) {
       requestBuilder.setToken(res.data.accessToken);
-      dispatch(setAuth(true));
+      dispatch(SetIsAuth(true));
       history.push("/");
     }
   }

@@ -4,7 +4,8 @@ import moment from "moment";
 import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import { setAuth } from "./../../redux/actions/user";
+import { SetIsAuth } from "./../../redux/user/slice";
+
 import userServices from "../../services/userService";
 import "./UserSettings.scss";
 import {
@@ -59,7 +60,7 @@ const UserSettings = () => {
           className="link"
           to={"/signin"}
           onClick={() => {
-            dispatch(setAuth(false));
+            dispatch(SetIsAuth(false));
             localStorage.removeItem("TOKEN");
           }}
         >

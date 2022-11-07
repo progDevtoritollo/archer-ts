@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { Auth, Home } from "./pages";
 import userService from "./services/userService";
 import { SetIsAuth } from "./redux/user/slice";
-import user from "./redux/user/slice";
 
 function App() {
   const dispatch = useDispatch();

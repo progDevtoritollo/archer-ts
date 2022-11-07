@@ -1,12 +1,14 @@
 import { Redirect, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./ClubEvents.scss";
-import club from "../../redux/reducers/club";
 
 const ClubEvents = () => {
+  const { club } = useSelector(({ club }) => club);
+  console.log(club);
   return (
     <>
-      {club.info === null ? (
+      {club === null ? (
         <Redirect to="/club/settings" />
       ) : (
         <div className="club-events">

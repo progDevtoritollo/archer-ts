@@ -16,7 +16,7 @@ import { Block } from "./../../components";
 import registerService from "./../../services/registerService";
 import loginService from "./../../services/loginService";
 import requestBuilder from "./../../utils/requestBuilder";
-import { setAuth } from "./../../redux/actions/user";
+import { SetIsAuth } from "./../../redux/user/slice";
 
 const RegisterForm = (registerData) => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const RegisterForm = (registerData) => {
       let res = await loginService.Login(loginData);
       if (res.status === 200) {
         requestBuilder.setToken(res.data.accessToken);
-        dispatch(setAuth(true));
+        dispatch(SetIsAuth(true));
         history.push("/");
       }
     }

@@ -1,10 +1,7 @@
 import "./CheckList.scss";
-import clubService from "../../services/clubService";
-import { setOneCheck } from "../../redux/actions/club";
 
 import { Card } from "./../index";
 import moment from "moment";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const CheckList = ({ checks }) => {
@@ -12,7 +9,6 @@ const CheckList = ({ checks }) => {
     <div className="check-block-wrapper">
       {checks.map((check, id) => (
         <Card key={id} className="card-check">
-          {/* <div onClick={() => handleCheckClick(check.id)}> */}
           <div>
             <Link to={`/check/${check.id}`} key={check.id + "link"}>
               <div className="card-check__name">

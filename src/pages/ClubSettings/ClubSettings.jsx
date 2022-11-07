@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ClubSettings.scss";
 import { SetIsCoach } from "./../../redux/user/slice";
 import clubService from "../../services/clubService";
-import club from "../../redux/club/slice";
-import user from "../../redux/user/slice";
 
 const ClubSettings = () => {
   const [clubName, setСlubName] = useState("");
@@ -21,16 +19,11 @@ const ClubSettings = () => {
 
   // const [clubArray, setClubArray] = useState(["ДЮШ40", "Olimpic"]);
 
-  const { isCoach } = useSelector(({ user }) => user);
+  const { club } = useSelector(({ club }) => club);
   // const { clubName } = useSelector(({ club }) => club);
   const dispatch = useDispatch();
 
   const [pageSwitch, setPageSwitch] = useState(true);
-
-  const handleSetCoach = (checked) => {
-    dispatch(SetIsCoach(checked));
-    console.log(checked);
-  };
 
   const handleClubSet = (clubId) => {
     setClubId(clubId);
@@ -100,9 +93,6 @@ const ClubSettings = () => {
             layout="horizontal"
             onFinish={handleAddSubmit}
           >
-            <Form.Item label="Тренер ">
-              <Switch default={isCoach} onChange={handleSetCoach} />
-            </Form.Item>
             {/* <Form.Item label="Город ">
               <Select>
                 {cityArray.map((item, id) => (
