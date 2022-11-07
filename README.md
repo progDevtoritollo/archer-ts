@@ -30,3 +30,11 @@ Run `docker compose up` in project home directory where docker-compose.yml file 
 Connect to Backend from browser - http://localhost:8080/api/hello
 
 Connect to Website from browser - http://localhost:3000/
+
+# How build to Docker
+
+https://docs.docker.com/get-started/09_image_best/
+
+npm run build
+
+docker build -t 66567575/uf767fg767yyu .
