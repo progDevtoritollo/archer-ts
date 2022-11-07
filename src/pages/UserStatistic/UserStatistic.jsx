@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { TypesLineCharts } from "./../../constants";
 
 import { LineChart, PieChart, BarChart } from "../../components/index.js";
 import userService from "../../services/userService";
+import { PersonalSevenDaysAvgShots } from "./../../utils/lineChartParsingData";
 
 const UserStatistic = () => {
   const [dataCharts, setDataCharts] = useState({});
+  const [lineChartByMonthAvgShot, setLineChartByMonthAvgShot] = useState(null);
 
   useEffect(() => {
     userService
@@ -12,11 +15,15 @@ const UserStatistic = () => {
       .then((res) => {
         if (res.status === 200) {
           setDataCharts(res.data);
+          setLineChartByMonthAvgShot(
+            PersonalSevenDaysAvgShots(res.data.avgTotalByMonth)
+          );
+          console.log(res.data);
         }
       })
       .catch((err) => console.error("somsing wrong", err));
   }, []);
-
+  console.log(lineChartByMonthAvgShot);
   return (
     <div className=" club-statistic">
       <h1>UserStatistic </h1>
@@ -26,7 +33,19 @@ const UserStatistic = () => {
         сколько, зайти в графики и глянуть какие можно еще придумать
       </span> */}
       <hr />
-      <LineChart data={dataCharts.avgTotalByMonth} />
+      {lineChartByMonthAvgShot == null ? (
+        <>
+          <h1>lineChartSevenDaysAverageShot == null</h1>
+        </>
+      ) : (
+        <>
+          <LineChart
+            chart={lineChartByMonthAvgShot}
+            titleDisplay={true}
+            titleText="Средние показатели выстрелов"
+          />
+        </>
+      )}
       <hr />
       <BarChart data={dataCharts.last10ChecksShotsRange} />
       <hr />

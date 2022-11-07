@@ -11,6 +11,8 @@ class ClubService {
   API_CLUB_JOIN = API + '/clubs/join'
   API_GET_CLUB_NEW_COMERS = API + "/clubs/get-newcomers";
   API_POST_CLUB_NEW_COMERS_ADD= API+ "/clubs/approve-newcomer"
+  API_POST_CLUB_MEMBER_TABLE_STATISTIC1= API+ "/clubs/members/statistic-1"
+  API_POST_CLUB_MEMBER_TABLE_STATISTIC2= API+ "/clubs/members/statistic-2"
 
 
   async getClubChecks(){
@@ -40,6 +42,14 @@ class ClubService {
   }
   async postNewComerAdd(data:object){
     return await requestBuilder.MakePostRequest(this.API_POST_CLUB_NEW_COMERS_ADD, data)
+  }
+
+  async getClubMembersStatistic_1(){
+    return await requestBuilder.MakeGetRequest(this.API_POST_CLUB_MEMBER_TABLE_STATISTIC1)
+  }
+
+  async getClubMembersStatistic_2(){
+    return await requestBuilder.MakeGetRequest(this.API_POST_CLUB_MEMBER_TABLE_STATISTIC2)
   }
 }
 const clubService = new ClubService() 

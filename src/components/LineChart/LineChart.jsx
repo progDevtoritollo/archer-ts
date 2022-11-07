@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import useState from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -20,7 +21,8 @@ ChartJS.register(
   Legend
 );
 
-const LineChart = (propsData) => {
+const LineChart = ({ chart, titleDisplay, titleText }) => {
+  console.log(chart);
   const options = {
     responsive: true,
     plugins: {
@@ -28,42 +30,13 @@ const LineChart = (propsData) => {
         position: "bottom",
       },
       title: {
-        display: false,
-        text: "Chart.js Line Chart",
+        display: titleDisplay,
+        text: titleText,
       },
     },
   };
 
-  const chart = {
-    labels: [
-      "Янв",
-      "Фев",
-      "Мар",
-      "Апр",
-      "Май",
-      "Июн",
-      "Июл",
-      "Авг",
-      "Сен",
-      "Окт",
-      "Ноя",
-      "Дек",
-    ],
-    datasets: [
-      {
-        label: "Средняя статистика",
-        data: propsData.data,
-        backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-        borderWidth: 3,
-      },
-    ],
-  };
-
-  return (
-    <div>
-      <Line options={options} data={chart} />
-    </div>
-  );
+  return <div>{<Line options={options} data={chart} />}</div>;
 };
 
 export default LineChart;
