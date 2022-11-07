@@ -76,7 +76,7 @@ const ClubStatistic = () => {
     console.log("params", pagination, filters, sorter, extra);
   };
 
-  const [userArray, setUserArray] = useState([]);
+  const [userArray, setUserArray] = useState([{}]);
   const [pageSwitch, setPageSwitch] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -101,20 +101,22 @@ const ClubStatistic = () => {
     clubService
       .getClubMembersStatistic_1()
       .then((res) => {
+        console.log(res.data);
+        let arr = [];
         res.data.map((obj) => {
-          setTable([
-            ...table,
-            {
-              key: obj.member.user.id,
-              name: obj.member.user.name + " " + obj.member.user.surname,
-              score: obj.checksAverage,
-              user_id: obj.member.user.id,
-              training: obj.trainingDays,
-              rank: obj.member.user.rank,
-            },
-          ]);
+          console.log(obj);
+          arr.push({
+            key: obj.member.user.id,
+            name: obj.member.user.name + " " + obj.member.user.surname,
+            score: obj.checksAverage,
+            user_id: obj.member.user.id,
+            training: obj.trainingDays,
+            rank: obj.member.user.rank,
+          });
+
           setLoading(!loading);
         });
+        setTable(arr);
       })
       .catch((err) => {
         console.error(err);
@@ -192,7 +194,8 @@ const ClubStatistic = () => {
                 <div className="members-list">
                   Список пользователей клуба рейтинг в каждой ранк (по дэфолту
                   выбрана ранк которая у пользователя - кадет например)
-                  {/* <div className="members-list__container">
+                  <>
+                    {/* <div className="members-list__container">
                 {userArray.map((item) => (
                   <Link
                     to={`/user/${item.member.user.id}`}
@@ -225,6 +228,7 @@ const ClubStatistic = () => {
                   </Link>
                 ))}
               </div> */}
+                  </>
                   <h1>Members</h1>
                   <Table
                     onRow={(record, rowIndex) => {
