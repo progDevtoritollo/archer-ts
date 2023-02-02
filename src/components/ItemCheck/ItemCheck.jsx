@@ -136,8 +136,8 @@ const ItemCheck = () => {
             <div className="card-block__total">{`Счет:  ${currentCheck.total}`}</div>
             <div className="card-block__distance">{`Дистанция:  ${currentCheck.distance}  `}</div>
             <div className="card-block__createData">{`Дата: ${moment(
-              currentCheck.createdDate
-            ).fromNow()} `}</div>
+              currentCheck.createDtm
+            ).format("MMMM Do YYYY, h:mm a")} `}</div>
           </Card>
           <hr />
           <div className="check-line">
